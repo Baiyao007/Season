@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{70D7DE02-0C80-4DD5-9503-0DBAB4DBDB44}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyLib</RootNamespace>
+    <AssemblyName>MyLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>52be9db2-97ca-4623-8772-27be92793df2</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>true</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Device\2DRenderer.cs" />
+    <Compile Include="Device\Camera2D.cs" />
+    <Compile Include="Device\GameDevice.cs" />
+    <Compile Include="Device\InputState.cs" />
+    <Compile Include="Device\ParticleManager\Particle.cs" />
+    <Compile Include="Device\ParticleManager\ParticleGroup.cs" />
+    <Compile Include="Device\ResouceManager.cs" />
+    <Compile Include="Device\Sound.cs" />
+    <Compile Include="InputParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\SceneFade.cs" />
+    <Compile Include="Scene\Loaders\Loader.cs" />
+    <Compile Include="Scene\Loaders\ResouceLoader.cs" />
+    <Compile Include="Utility\Action\ButtonActions\IFlash.cs" />
+    <Compile Include="Utility\Action\ButtonActions\INone.cs" />
+    <Compile Include="Utility\Action\ButtonActions\IResize.cs" />
+    <Compile Include="Utility\Action\IChangeAble.cs" />
+    <Compile Include="Utility\Action\Movements\MoveAccelerate.cs" />
+    <Compile Include="Utility\Action\Movements\MoveByControl.cs" />
+    <Compile Include="Utility\Action\Movements\MoveCircle.cs" />
+    <Compile Include="Utility\Action\Movements\MoveEllipse.cs" />
+    <Compile Include="Utility\Action\Movements\MoveExplode.cs" />
+    <Compile Include="Utility\Action\Movements\MoveTeleport.cs" />
+    <Compile Include="Utility\Action\Movements\MoveLine.cs" />
+    <Compile Include="Utility\Action\Movements\MoveRightAngle.cs" />
+    <Compile Include="Utility\Action\Movements\MoveTornado.cs" />
+    <Compile Include="Utility\Action\Movements\MoveUturn.cs" />
+    <Compile Include="Utility\Action\TheChange\ChangeLuceBig.cs" />
+    <Compile Include="Utility\Action\TheChange\ChangeNone.cs" />
+    <Compile Include="Utility\Action\TheChange\ChangeToLarge.cs" />
+    <Compile Include="Utility\Action\TheChange\ChangeToLucency.cs" />
+    <Compile Include="Utility\BezierCurve3.cs" />
+    <Compile Include="Utility\BroadPolygon.cs" />
+    <Compile Include="Utility\Button.cs" />
+    <Compile Include="Utility\Action\ButtonActions\IWave_X.cs" />
+    <Compile Include="Utility\Action\ButtonActions\IWave_Y.cs" />
+    <Compile Include="Utility\CSVReader.cs" />
+    <Compile Include="Utility\Action\IButtonAction.cs" />
+    <Compile Include="Utility\Methord.cs" />
+    <Compile Include="Utility\Motion.cs" />
+    <Compile Include="Utility\Action\IMoveAble.cs" />
+    <Compile Include="Utility\Range.cs" />
+    <Compile Include="Utility\Selector.cs" />
+    <Compile Include="Utility\Timer.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>
