@@ -19,7 +19,7 @@ namespace Season.Components.MoveComponents
         private Entity player;
         private C_Energy energy;
         private C_DrawAnimetion draw;
-        private bool isFall;
+        private bool isJump;
         private float restExpend;
         private float moveExpend;
         private bool isCaught;
@@ -28,7 +28,7 @@ namespace Season.Components.MoveComponents
             : base(speed, Vector2.Zero)
         {
             startSpeed = speed;
-            isFall = false;
+            isJump = false;
             isCaught = false;
         }
 
@@ -58,7 +58,8 @@ namespace Season.Components.MoveComponents
         }
 
         protected override void UpdateMove() {
-            if (isFall) { return; }
+            if (collider.IsThrough("ChildJump")) { isJump = true; }
+            if (isJump) { return; }
             isCaught = childState.IsBeCaught();
             if (isCaught) {
                 Entity enemy = childState.GetEnemyCaughtMe();
@@ -122,9 +123,11 @@ namespace Season.Components.MoveComponents
         private void Move() {
             if (childDirection.IsNone()) { energy.Damage(restExpend); }   
             else if (childDirection.IsRight()) {
+                if (collider.IsThrough("ChildStopR")) { return; }
                 if (CheckFall(true)) { return; }
             }
             else if (childDirection.IsLeft()) {
+                if (collider.IsThrough("ChildStopL")) { return; }
                 if (CheckFall(false)) { return; }
             }
             energy.Damage(moveExpend);
@@ -136,14 +139,14 @@ namespace Season.Components.MoveComponents
             else { bezierPoint.ToLeft((int)speed); }
 
             if (bezierPoint.IsEnd()) {
-                isFall = true;
+                isJump = true;
                 return true;
             }
             bezierPoint.Rotate();
             return false;
         }
 
-        public bool GetIsFall() { return isFall; }
+        public bool GetIsJump() { return isJump; }
 
     }
 }

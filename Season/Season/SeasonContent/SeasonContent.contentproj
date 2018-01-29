@@ -50,6 +50,10 @@
       <Name>EnemyAI</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="CSV\HintsData_S1.csv">
+      <Name>HintsData_S1</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="CSV\LayerList_Stage1.csv">
       <Name>LayerList_Stage1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
