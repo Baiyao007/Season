@@ -52,10 +52,7 @@ namespace Season.States
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState) {
             //下ジャンプに遷移
-            if (BezierStage.GetIndexList(entity.transform.Position).Count > 1 &&
-                inputState.IsDown(Keys.Down, Buttons.DPadDown) &&
-                inputState.WasDown(Keys.Space, Buttons.A))
-            {
+            if (JumpDownCheck(entity)) {
                 routeEffect.Sleep();
                 float nowSpeed = moveComp.speed;
                 entity.RemoveComponent(moveComp);
@@ -122,9 +119,25 @@ namespace Season.States
             return eStateTrans.ToThis;
         }
 
-        private bool CollitionCheck(Entity entity) {
+        private bool IsColliderValid(Entity entity) {
             collider = entity.GetColliderComponent("Player");
             if (collider == null) { return false; }
+            return true;
+        }
+
+        private bool JumpDownCheck(Entity entity) {
+            if (!IsColliderValid(entity)) { return false; }
+            if (collider.IsThrough("JumpDown") &&     //BezierStage.GetIndexList(entity.transform.Position).Count > 1
+                inputState.IsDown(Keys.Down, Buttons.DPadDown))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        private bool CollitionCheck(Entity entity) {
+            if (!IsColliderValid(entity)) { return false; }
             if (collider.IsThrough("Boar")) { 
                 return true;
             }

@@ -119,7 +119,7 @@ namespace Season
             ColliderContainer.ForEach(c => c.Update());
 
             for (int i = 0; i < ColliderContainer.Count; i++) {
-                for (int j = i + 1; j < ColliderContainer.Count; j++) {
+                for (int j = 0; j < ColliderContainer.Count; j++) {
                     ColliderContainer[i].Collition(ColliderContainer[j]);
                 }
             }

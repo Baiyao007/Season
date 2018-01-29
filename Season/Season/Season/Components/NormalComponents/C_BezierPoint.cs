@@ -14,7 +14,7 @@ namespace Season.Components.NormalComponents
         private List<Vector2> route;
         private int cursor;
         private Vector2 previousPosition;
-        private C_Switch3 playerDirection;
+        private C_Switch3 direction;
         private int lineIndex;
 
         public int LineIndex {
@@ -77,21 +77,26 @@ namespace Season.Components.NormalComponents
         }
 
         public void ToRight(int speed = 1) {
-            if (route.Count != 0 && !playerDirection.IsLeft()) { previousPosition = route[cursor]; }
+            if (route.Count != 0 && !direction.IsLeft()) { previousPosition = route[cursor]; }
             cursor += speed;
             if (cursor >= route.Count) { ToNext(); }
         }
 
         public void ToLeft(int speed = 1) {
-            if (route.Count != 0 && !playerDirection.IsRight()) { previousPosition = route[cursor]; }
+            if (route.Count != 0 && !direction.IsRight()) { previousPosition = route[cursor]; }
             cursor -= speed;
             if (cursor < 0) { ToBefore(); }
         }
 
         public void Rotate() {
+            if (cursor >= route.Count || cursor < 0) {
+                if (direction.IsRight()) { entity.transform.Angle = 0; }
+                else { entity.transform.Angle = 180; }
+                return;
+            }
             if (route[cursor] == previousPosition) { return; }
-            Vector2 direction = route[cursor] - previousPosition;
-            float radian = (float)Math.Atan2(direction.Y, direction.X);
+            Vector2 direct = route[cursor] - previousPosition;
+            float radian = (float)Math.Atan2(direct.Y, direct.X);
             entity.transform.Angle = Methord.ToDegree(radian);
         }
 
@@ -117,7 +122,7 @@ namespace Season.Components.NormalComponents
 
             BezierStage.SetBezierposition(entity);
             route = BezierStage.GetNowRoute(lineIndex, bezierPoint);
-            playerDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
+            direction = (C_Switch3)entity.GetNormalComponent("C_Switch3");
             InitializeCursor();
         }
 

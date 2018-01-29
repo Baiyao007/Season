@@ -87,10 +87,10 @@ namespace Season.Components.MoveComponents
 
             //角度補間(空中姿勢調整)
             if (playerDirection.IsRight()) {
-                entity.transform.Angle = entity.transform.Angle >= 360 ? 360 : entity.transform.Angle * 1.002f;
+                entity.transform.Angle = entity.transform.Angle >= 360 ? 360 : entity.transform.Angle * 1.003f;
             }
             else if (playerDirection.IsLeft()) {
-                entity.transform.Angle = entity.transform.Angle <= 180 ? 180 : entity.transform.Angle * 0.998f;
+                entity.transform.Angle = entity.transform.Angle <= 180 ? 180 : entity.transform.Angle * 0.995f;
             }
         }
 

@@ -20,6 +20,7 @@ namespace Season.Components
         Circle,
         Square,
         Line,
+        Hint,
     }
 
     public class ColliderComponent : Component
@@ -256,6 +257,7 @@ namespace Season.Components
             bool isJostleThis = CollitionCheck.CollitionCheck_Circle(this, otherComp);
             SetResultDataJostle(isJostleThis, otherComp);
         }
+
         protected void Through_Circle_Line(ColliderComponent otherComp) {
             Vector2 normal = Vector2.Zero;
             bool isThroughThis = false;
@@ -316,7 +318,9 @@ namespace Season.Components
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
-            centerPosition = entity.transform.Position + offsetPosition;
+            if (isLocal) { 
+                centerPosition = entity.transform.Position + offsetPosition;
+            }
         }
 
         public override void DeActive() {

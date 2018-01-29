@@ -31,6 +31,7 @@ namespace Season.Utility
 
         public static void InitializeStage(int stageNo) {
             controllPoints.Clear();
+            blockMapList.Clear();
             CSVReader.Read("PointData_S" + stageNo);
             int[,] result = CSVReader.GetIntMatrix();
           
@@ -55,13 +56,13 @@ namespace Season.Utility
                 trans.Position = b[0];
                 //実体生成
                 Entity wallEntity = Entity.CreateEntity("Wall", "Wall", trans);
-                C_Collider_Line wall = new C_Collider_Line("Wall", b[0], b[1], eCollitionType.Jostle);
+                C_Collider_Line wall = new C_Collider_Line("Wall", b[0], b[1], eCollitionType.Jostle, false);
                 wallEntity.RegisterComponent(wall);
             });
 
             DrawComponent com = new C_DrawBezier(blockMapList);
             com.Active();
-            //TaskManager.AddTask(com);
+            TaskManager.AddTask(com);
 
             //ソード（左から右に）
 

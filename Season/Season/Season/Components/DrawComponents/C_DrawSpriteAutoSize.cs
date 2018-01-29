@@ -9,15 +9,15 @@ namespace Season.Components.DrawComponents
 {
     class C_DrawSpriteAutoSize : DrawComponent
     {
-        private float radius;
+        private Vector2 size;
         private string name;
         private Vector2 offset;
         private Color color;
-        public C_DrawSpriteAutoSize(string name, Vector2 offset, float radius = 1, float depth = 1, float alpha = 1)
+        public C_DrawSpriteAutoSize(string name, Vector2 offset, Vector2 size, float depth = 1, float alpha = 1)
         {
             this.alpha = alpha;
             this.depth = depth;
-            this.radius = radius;
+            this.size = size;
             this.name = name;
             this.offset = Vector2.Zero;   //offset;
             color = Color.LightGreen;
@@ -27,8 +27,8 @@ namespace Season.Components.DrawComponents
             this.color = color;
         }
 
-        public void SetRudius(float radius) {
-            this.radius = radius;
+        public void SetSize(Vector2 size) {
+            this.size = size;
         }
 
         public override void Draw() {
@@ -37,7 +37,7 @@ namespace Season.Components.DrawComponents
             Vector2 position = entity.transform.Position + offset;
             Vector2 imgSize = ResouceManager.GetTextureSize(name);
             Rectangle rect = new Rectangle(0, 0, (int)imgSize.X, (int)imgSize.Y);
-            Vector2 drawSize = new Vector2(radius / imgSize.X, radius / imgSize.Y) * 2;
+            Vector2 drawSize = new Vector2(size.X / imgSize.X, size.Y / imgSize.Y) * 2;
             Renderer_2D.DrawTexture(name, position, color, alpha, rect, drawSize, 0, imgSize / 2);
 
             Renderer_2D.End();

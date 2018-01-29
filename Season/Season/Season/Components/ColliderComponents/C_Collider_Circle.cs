@@ -27,7 +27,7 @@ namespace Season.Components.ColliderComponents
                        
             //if (isLocal) { return; }
             drawEntity.transform.Position = centerPosition;
-            drawCircle.SetRudius(radius);
+            drawCircle.SetSize(Vector2.One * radius);
         }
 
         //public override void Collition(ColliderComponent other) { base.Collition(other); }
@@ -42,10 +42,12 @@ namespace Season.Components.ColliderComponents
         }
 
         protected override void DoThroughCollision(ColliderComponent otherComp) {
-            if (otherComp.collisionForm == eCollitionForm.Circle) {
+            if (otherComp.collisionForm == eCollitionForm.Circle)
+            {
                 Through_Circle_Circle(otherComp);
             }
-            else if (otherComp.collisionForm == eCollitionForm.Line) {
+            else if (otherComp.collisionForm == eCollitionForm.Line)
+            {
                 Through_Circle_Line(otherComp);
             }
         }
@@ -55,12 +57,12 @@ namespace Season.Components.ColliderComponents
             //TODO 更新コンテナに自分を入れる
 
             if (colliderName == "OverseeCircle") {
-                drawCircle = new C_DrawSpriteAutoSize("E_CheckArea", offsetPosition, radius, 15, 0.5f);
+                drawCircle = new C_DrawSpriteAutoSize("E_CheckArea", offsetPosition, Vector2.One * radius, 15, 0.5f);
                 drawEntity.RegisterComponent(drawCircle);
             }
             else {
-                drawCircle = new C_DrawSpriteAutoSize("CollisionArea", offsetPosition, radius, 100);
-                //drawEntity.RegisterComponent(drawCircle);
+                drawCircle = new C_DrawSpriteAutoSize("CollisionArea", offsetPosition, Vector2.One * radius, 100);
+                drawEntity.RegisterComponent(drawCircle);
             }
             centerPosition = entity.transform.Position + offsetPosition;
         }

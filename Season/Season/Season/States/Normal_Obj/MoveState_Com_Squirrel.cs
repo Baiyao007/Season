@@ -35,7 +35,7 @@ namespace Season.States
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState)
         {
-            if (moveComp.GetIsFall())
+            if (moveComp.GetIsJump())
             {
                 Console.WriteLine("Child Fall");
                 entity.RemoveComponent(moveComp);
