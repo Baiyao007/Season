@@ -5,6 +5,7 @@ using MyLib.Utility.Action.Movements;
 using MyLib.Utility.Action.TheChange;
 using Season.Components.ColliderComponents;
 using Season.Components.DrawComponents;
+using Season.Components.MoveComponents;
 using Season.Components.NormalComponents;
 using Season.Entitys;
 using Season.States;
@@ -51,6 +52,9 @@ namespace Season.Components.UpdateComponents
         {
             base.Active();
             //TODO 更新コンテナに自分を入れる
+
+            UpdateComponent fallComp = new C_StaticEntityFall();
+            entity.RegisterComponent(fallComp);
 
             myState = new C_SeasonState(eSeason.None);
             entity.RegisterComponent(myState);

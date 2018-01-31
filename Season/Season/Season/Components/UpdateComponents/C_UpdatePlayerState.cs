@@ -31,8 +31,7 @@ namespace Season.Components.UpdateComponents
         private List<string> nameList2;
 
 
-        public C_UpdatePlayerState(GameDevice gameDevice)
-        {
+        public C_UpdatePlayerState(GameDevice gameDevice) {
             this.gameDevice = gameDevice;
             inputState = gameDevice.GetInputState;
             normalState = new JumpState_Com_Player(gameDevice, eJumpType.Fall, 0);
@@ -54,8 +53,7 @@ namespace Season.Components.UpdateComponents
             };
         }
 
-        public override void Active()
-        {
+        public override void Active() {
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
@@ -72,26 +70,14 @@ namespace Season.Components.UpdateComponents
             energy = (C_Energy)entity.GetNormalComponent("C_Energy");
         }
 
-        public override void DeActive()
-        {
+        public override void DeActive() {
             base.DeActive();
             //TODO 更新コンテナから自分を削除
         }
 
-        public override void Update()
-        {
+        public override void Update() {
             normalState = normalState.Update(entity);
-
             effectTimer.Update();
-
-            if (inputState.IsDown(Keys.W, Buttons.LeftShoulder)) {
-                Camera2D.ZoomIn();
-                energy.Heal(1);
-            }
-            if (inputState.IsDown(Keys.S, Buttons.RightShoulder)) {
-                Camera2D.ZoomOut();
-                energy.Damage(1);
-            }
         }
 
 

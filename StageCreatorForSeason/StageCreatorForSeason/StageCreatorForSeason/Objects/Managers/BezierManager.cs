@@ -76,8 +76,7 @@ namespace StageCreatorForSeason.Objects
         private void DrawBezierLine() {
             Renderer_2D.Begin(Camera2D.GetTransform());
             for (int i = 0; i < bezierPositions.Count; i++) {
-                for (int j = 0; j < bezierPositions[i].Count - 1; j++)
-                {
+                for (int j = 0; j < bezierPositions[i].Count - 1; j++) {
                     Renderer_2D.DrawLine(
                         bezierPositions[i][j],
                         bezierPositions[i][j + 1],

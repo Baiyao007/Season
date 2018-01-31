@@ -161,8 +161,19 @@ namespace MyLib.Utility
             return false;
         }
 
-
+        
         public static void Warp(float min, float max, ref float value) {
+            if (Math.Min(value, min) == value) {
+                value = max;
+                return;
+            }
+            else if (Math.Max(value, max) == value) {
+                value = min;
+                return;
+            }
+        }
+
+        public static void Warp(int min, int max, ref int value) {
             if (Math.Min(value, min) == value) {
                 value = max;
                 return;

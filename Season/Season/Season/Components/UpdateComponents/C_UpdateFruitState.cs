@@ -20,8 +20,7 @@ namespace Season.Components.UpdateComponents
 
         private C_DrawAnimetion drawComp;
 
-        public C_UpdateFruitState(GameDevice gameDevice)
-        {
+        public C_UpdateFruitState(GameDevice gameDevice) {
             this.gameDevice = gameDevice;
             disapearTimer = new Timer(3);
             isDisapear = false;
@@ -41,14 +40,12 @@ namespace Season.Components.UpdateComponents
             drawComp = (C_DrawAnimetion)entity.GetDrawComponent("C_DrawAnimetion");
         }
 
-        public override void DeActive()
-        {
+        public override void DeActive() {
             base.DeActive();
             //TODO 更新コンテナから自分を削除
         }
 
         public override void Update() {
-            
             if (isDisapear) {
                 disapearTimer.Update();
                 if (disapearTimer.IsTime) {

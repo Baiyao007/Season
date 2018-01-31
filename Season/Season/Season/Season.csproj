@@ -113,6 +113,7 @@
     <Compile Include="Components\NormalComponents\C_EnemyState.cs" />
     <Compile Include="Components\NormalComponents\C_Energy.cs" />
     <Compile Include="Components\NormalComponents\C_PlayerState.cs" />
+    <Compile Include="Components\UpdateComponents\C_Hint.cs" />
     <Compile Include="Components\UpdateComponents\C_SeasonState.cs" />
     <Compile Include="Components\NormalComponents\C_Switch3.cs" />
     <Compile Include="Components\NormalComponents\C_WastelandState.cs" />

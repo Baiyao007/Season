@@ -21,8 +21,7 @@ namespace Season.Components.MoveComponents
             isLand = false;
         }
 
-        protected override void UpdateMove()
-        {
+        protected override void UpdateMove() {
             base.UpdateMove();
 
             if (isLand) { return; }
@@ -30,8 +29,7 @@ namespace Season.Components.MoveComponents
         }
 
 
-        public override void Active()
-        {
+        public override void Active() {
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
@@ -54,16 +52,14 @@ namespace Season.Components.MoveComponents
         }
 
         //チェックしながら落下処理
-        private void CheckLand()
-        {
+        private void CheckLand() {
             float powercut = 0;
             float cutPower = 5f;    //チェック間隔設定
 
             Vector2 testPosition = bezierPoint.GetNowPosition();
 
             //落下チェック
-            while (currentJumpPower > 0)
-            {
+            while (currentJumpPower > 0) {
                 if (currentJumpPower < cutPower) { cutPower = currentJumpPower; }
                 entity.transform.Position += new Vector2(0, cutPower);
                 currentJumpPower -= cutPower;
@@ -73,8 +69,7 @@ namespace Season.Components.MoveComponents
                 if (testPosition == Vector2.Zero) { continue; }
 
                 if (entity.transform.Position.Y >= testPosition.Y &&
-                    entity.transform.Position.Y <= testPosition.Y + 10
-                    )
+                    entity.transform.Position.Y <= testPosition.Y + 10)
                 {
                     isLand = true;
                     break;
@@ -84,10 +79,7 @@ namespace Season.Components.MoveComponents
             currentJumpPower += powercut;
         }
 
-        public bool GetIsLand()
-        {
-            return isLand;
-        }
+        public bool GetIsLand() { return isLand; }
 
     }
 

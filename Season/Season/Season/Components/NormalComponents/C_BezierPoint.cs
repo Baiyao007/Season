@@ -134,7 +134,6 @@ namespace Season.Components.NormalComponents
             route.Clear();
         }
 
-
         public string Print() {
             string result = entity.GetName() + 
                 " - Route: line - " + lineIndex + 

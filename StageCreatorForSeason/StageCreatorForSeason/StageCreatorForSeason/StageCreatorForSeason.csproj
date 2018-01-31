@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Def\Parameter.cs" />
+    <Compile Include="Objects\Hint.cs" />
     <Compile Include="Objects\Managers\BezierManager.cs" />
     <Compile Include="Objects\BezierPoint.cs" />
     <Compile Include="Objects\MyMouse.cs" />
