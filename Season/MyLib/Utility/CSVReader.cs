@@ -63,7 +63,18 @@ namespace MyLib.Utility
             fileStream.Close();
         }
 
+        public static void Save(string filename, List<string> data)
+        {
+            FileStream fileStream = new FileStream("Content/CSV/" + filename + ".csv", FileMode.Create);
+            StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.GetEncoding("Shift_JIS"));
 
+            for (int i = 0; i < data.Count; i++) {
+                streamWriter.WriteLine(data[i]);
+            }
+
+            streamWriter.Close();
+            fileStream.Close();
+        }
 
         public static List<string[]> GetData() {
             return stringData;

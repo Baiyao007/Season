@@ -61,15 +61,29 @@ namespace Season.Scene.ScenePages
         }
 
         private void DebugInitialize() {
-            //ShaderTest用
-            //CreatShaderTest();
-
             //BezierLine描画
             DrawComponent com = new C_DrawBezier(BezierStage.GetControllPoints());
             com.Active();
-            //TaskManager.AddTask(com);
+            TaskManager.AddTask(com);
 
-            //機能改善中
+            //Wall描画
+            com = new C_DrawBezier(BezierStage.GetBlockMapList());
+            com.Active();
+            TaskManager.AddTask(com);
+
+            //ShaderTest用
+            //CreatShaderTest();
+
+            //StageCheck
+            if (inputState.IsDown(Keys.W, Buttons.LeftShoulder)) {
+                Camera2D.ZoomIn();
+            }
+            if (inputState.IsDown(Keys.S, Buttons.RightShoulder)) {
+                Camera2D.ZoomOut();
+            }
+
+
+            //毒沼生成（機能改善中）
             if (stageNo == 1) {
                 List<int> lb = new List<int>() { 4, 4 };
                 CreatWasteland(lb);
@@ -92,7 +106,6 @@ namespace Season.Scene.ScenePages
 
             //初期化毒沼
             C_WastelandState wastelandState = new C_WastelandState(lb);
-            
             
             bezier.SetBezierData(lb[0], lb[1], 0);
             bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1]));
@@ -147,7 +160,7 @@ namespace Season.Scene.ScenePages
                 return;
             }
             if (EntityManager.GetEntityCount() > 0) {
-                Camera2D.Update(EntityManager.FindWithTag("Player")[0].transform.Position);
+                Camera2D.Update(player.transform.Position);
             }
             Sound.PlayBGM("GamePlay");
         }

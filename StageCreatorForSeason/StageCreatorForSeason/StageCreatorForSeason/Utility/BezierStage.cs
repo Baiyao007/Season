@@ -30,15 +30,6 @@ namespace StageCreatorForSeason.Utility
                 }
                 controllPoints[controllPoints.Count - 1].Add(new Vector2(result[i, 0], result[i, 1]));
             }
-
-            //for (int i = 0; i < controllPoints.Count; i++) {
-            //    if (controllPoints[i].Count == 2) {
-            //        blockMapList.Add(controllPoints[i]);
-            //        controllPoints.RemoveAt(i);
-            //        i--;
-            //    }
-            //}
-
             return controllPoints;
         }
 

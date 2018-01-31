@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MyLib.Device;
 using StageCreatorForSeason.Def;
-using StageCreatorForSeason.Utility;
 using MyLib.Utility;
 using StageCreatorForSeason.Objects;
 using System.Collections.Generic;
@@ -44,6 +43,7 @@ namespace StageCreatorForSeason.Scene.ScenePages
                 Keys.D1, Keys.D2, Keys.D3,
                 Keys.D4, Keys.D5, Keys.D6,
                 Keys.D7, Keys.D8, Keys.D9,
+                Keys.D0
             };
         }
 
@@ -79,13 +79,16 @@ namespace StageCreatorForSeason.Scene.ScenePages
                 return;
             }
             if (inputState.WasDown(Keys.C)) {
-                objectManager.SavePoints(Parameter.StageNo);
+                objectManager.Save(Parameter.StageNo);
             }
 
             if (inputState.WasDown(Keys.P)) {
                 isPause = !isPause;
             }
             if (isPause) { return; }
+
+            if (inputState.WasDown(Keys.OemMinus)) { bar.ToNext(); }
+            if (inputState.WasDown(Keys.OemPlus)) { bar.ToBefore(); }
 
             for (int i = 0; i < barKeys.Count; i++) {
                 if (inputState.WasDown(barKeys[i])) { bar.SetNowTool(i); }
@@ -156,9 +159,10 @@ namespace StageCreatorForSeason.Scene.ScenePages
             Renderer_2D.Begin();
             Renderer_2D.DrawString("Stage1", Vector2.One * 20, Color.Red, 1.8f);
             Renderer_2D.DrawString("ObjectsCount:" + objectManager.ObjectsCount(), new Vector2(20, 100), Color.Red, 1.2f);
+            Renderer_2D.DrawString("Position:" + focus, new Vector2(1440, 60), Color.Red, 1.1f);
+            Renderer_2D.DrawString("Page:" + (int)(focus.X / 2000), new Vector2(1440, 120), Color.Red, 1.1f);
             Renderer_2D.End();
         }
-
 
         /// <summary>
         /// シーンを閉める

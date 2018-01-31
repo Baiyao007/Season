@@ -124,7 +124,7 @@ namespace Season.Components.MoveComponents
         private void CheckLand()
         {
             float powercut = 0;
-            float cutPower = 5f;    //チェック間隔設定
+            float cutPower = 3f;    //チェック間隔設定
 
             Vector2 testPosition = bezierPoint.GetNowPosition();
 
@@ -139,8 +139,8 @@ namespace Season.Components.MoveComponents
                 if (bezierPoint.IsEnd()) { continue; }
                 if (testPosition == Vector2.Zero) { continue; }
 
-                if (entity.transform.Position.Y >= testPosition.Y &&
-                    entity.transform.Position.Y <= testPosition.Y + 10
+                if (entity.transform.Position.Y >= testPosition.Y - 10 &&
+                    entity.transform.Position.Y <= testPosition.Y + 5
                     )
                 {
                     isLand = true;

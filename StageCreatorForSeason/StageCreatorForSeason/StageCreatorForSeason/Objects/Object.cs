@@ -8,8 +8,22 @@ using System.Text;
 namespace StageCreatorForSeason.Objects
 {
     enum eObjectType {
-        BezierStage,
+        BezierStage = 0,
         Wall,
+        Boar,
+        Eagle,
+        Shrub,
+        Squirrel,
+        F = 10,
+        X,
+        Z,
+        Jump,
+        Right,
+        Left,
+        HintNoLeft,
+        HintNoRight,
+        HintJump,
+        HintDown,
         None,
     }
 
@@ -22,6 +36,8 @@ namespace StageCreatorForSeason.Objects
         protected eObjectType type;
         protected int teamNo;
         protected bool isSelected;
+
+        public string GetName() { return name; }
 
         public Vector2 Position {
             set { position = value; }
@@ -96,6 +112,10 @@ namespace StageCreatorForSeason.Objects
             Renderer_2D.DrawTexture("CollisionArea", position, color, 0.5f, rect, drawSize, 0, imgSize / 2);
 
             Renderer_2D.End();
+        }
+
+        public virtual string Print() {
+            return "";
         }
     }
 }

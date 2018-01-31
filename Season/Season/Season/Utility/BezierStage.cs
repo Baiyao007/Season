@@ -60,12 +60,6 @@ namespace Season.Utility
                 wallEntity.RegisterComponent(wall);
             });
 
-            DrawComponent com = new C_DrawBezier(blockMapList);
-            com.Active();
-            TaskManager.AddTask(com);
-
-            //ソード（左から右に）
-
             isEnd = false;
         }
 
@@ -146,18 +140,15 @@ namespace Season.Utility
             List<List<Vector2>> routes = new List<List<Vector2>>();
 
             //着地できるルートがない場合
-            if (indexs.Count == 0)
-            {
+            if (indexs.Count == 0) {
                 isEnd = true;
                 lineIndex = -1;
                 return;
             }
 
             //着地できるルートは1つしかない場合
-            else if (indexs.Count == 1)
-            {
-                while (nowPosition.X > controllPoints[indexs[0]][bezierPoint + 2].X)
-                {
+            else if (indexs.Count == 1) {
+                while (nowPosition.X > controllPoints[indexs[0]][bezierPoint + 2].X) {
                     bezierPoint += 2;
                 }
                 routes.Add(GetNowRoute(indexs[0], bezierPoint));
@@ -166,13 +157,11 @@ namespace Season.Utility
                     cursor < routes[0].Count - 1)
                 {
                     int distance = (int)((nowPosition.X - routes[0][cursor].X) * 0.6f);
-                    if (distance <= 1)
-                    {
+                    if (distance <= 1) {
                         cursor++;
                         break;
                     }
-                    if (routes[0].Count > cursor + distance)
-                    {
+                    if (routes[0].Count > cursor + distance) {
                         cursor += distance;
                     }
                     else {
@@ -184,22 +173,16 @@ namespace Season.Utility
                 return;
             }
 
-
-
             //着地できるルートは複数の場合
             List<int> cursors = new List<int>();        //ルートの中の位置
             List<int> bezierPoints = new List<int>();   //ルート
-            for (int i = 0; i < indexs.Count; i++)
-            {
+            for (int i = 0; i < indexs.Count; i++)  {
                 bezierPoint = 0;
                 cursor = 0;
 
                 //今のlineを登録
-                if (bezierComp.LineIndex == indexs[i])
-                {
-
-                    while (nowPosition.X > controllPoints[indexs[i]][bezierPoint + 2].X)
-                    {
+                if (bezierComp.LineIndex == indexs[i])  {
+                    while (nowPosition.X > controllPoints[indexs[i]][bezierPoint + 2].X)  {
                         bezierPoint += 2;
                     }
                     routes.Add(GetNowRoute(indexs[i], bezierPoint));
@@ -209,13 +192,11 @@ namespace Season.Utility
                             cursor < routes[i].Count - 1)
                     {
                         int distance = (int)((nowPosition.X - routes[i][cursor].X) * 0.6f);
-                        if (distance <= 1)
-                        {
+                        if (distance <= 1)  {
                             cursor++;
                             break;
                         }
-                        if (routes[i].Count > cursor + distance)
-                        {
+                        if (routes[i].Count > cursor + distance)  {
                             cursor += distance;
                         }
                         else {
@@ -227,8 +208,7 @@ namespace Season.Utility
                 }
 
                 //検索した他のlineを登録
-                while (nowPosition.X > controllPoints[indexs[i]][bezierPoint + 2].X)
-                {
+                while (nowPosition.X > controllPoints[indexs[i]][bezierPoint + 2].X)  {
                     bezierPoint += 2;
                 }
                 routes.Add(GetNowRoute(indexs[i], bezierPoint));
@@ -239,13 +219,11 @@ namespace Season.Utility
                         cursor < routes[i].Count - 1)
                 {
                     int distance = (int)((nowPosition.X - routes[i][cursor].X) * 0.6f);
-                    if (distance <= 1)
-                    {
+                    if (distance <= 1) {
                         cursor++;
                         break;
                     }
-                    if (routes[i].Count > cursor + distance)
-                    {
+                    if (routes[i].Count > cursor + distance) {
                         cursor += distance;
                     }
                     else {
@@ -256,17 +234,20 @@ namespace Season.Utility
             }
 
             int index = 0;
-            float lenth = 0;
+            float lenth = routes[index][cursors[index]].Y - nowPosition.Y;
+            //着地できるルートを全チェック
             for (int i = 0; i < indexs.Count; i++) {
-                if (nowPosition.Y > routes[i][cursors[i]].Y + 10) { continue; }
-                if (lenth == 0) {
-                    lenth = routes[i][cursors[i]].Y - nowPosition.Y;
+                //今の位置はルートの下だとチェックしない
+                if (nowPosition.Y > routes[i][cursors[i]].Y) { continue; }
+                if (lenth < 0) {
                     index = i;
+                    lenth = routes[index][cursors[index]].Y - nowPosition.Y;
                     continue;
                 }
-                if (lenth < routes[index][cursors[index]].Y - nowPosition.Y) { return; }
-                lenth = routes[i][cursors[i]].Y - nowPosition.Y;
+                //チェック中のルートと自分の距離はさっきチェックした最短距離より大きい場合は更新しない
+                if (lenth < routes[i][cursors[i]].Y - nowPosition.Y) { continue; }
                 index = i;
+                lenth = routes[index][cursors[index]].Y - nowPosition.Y;
             }
             lineIndex = indexs[index];
             bezierPoint = bezierPoints[index];
@@ -274,12 +255,8 @@ namespace Season.Utility
             route = routes[index];
         }
 
-        public static int GetNowLinePointCount(int lineIndex) {
-            if (lineIndex == -1) { return 0; }
-            return controllPoints[lineIndex].Count;
-        }
-
         public static List<List<Vector2>> GetControllPoints() { return controllPoints; }
+        public static List<List<Vector2>> GetBlockMapList() { return blockMapList; }
 
         public static bool IsRouteEnd() { return isEnd; }
     }

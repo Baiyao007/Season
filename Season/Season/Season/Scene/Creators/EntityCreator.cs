@@ -25,11 +25,10 @@ namespace Season.Scene.Creators
         public EntityCreator(GameDevice gameDevice) {
             this.gameDevice = gameDevice;
 
-            createWithLBC = new Dictionary<string, Action<int, int, int>>() {
-                { "Shrub", CreateShrub },
-            };
+            createWithLBC = new Dictionary<string, Action<int, int, int>>();
 
             createWithPosition = new Dictionary<string, Action<Vector2>>() {
+                { "Shrub", CreateShrub },
                 { "Squirrel", CreateSquirrel },
                 { "Bird", CreateBird },
                 { "Boar", CreateBoar },
@@ -41,11 +40,10 @@ namespace Season.Scene.Creators
         public void CreateEntitys(int stageNo) {
             CreatPlayer();
             CreateWithPosition(stageNo);
-            CreateWithLBC(stageNo);
+            //CreateWithLBC(stageNo);
         }
 
-        private void CreatPlayer()
-        {
+        private void CreatPlayer() {
             //生成地を決める
             Transform2D trans = new Transform2D();
             trans.Position = new Vector2(500, 100);
@@ -94,6 +92,31 @@ namespace Season.Scene.Creators
         #endregion
 
         #region CreateWithPositon
+
+        private void CreateShrub(Vector2 position)
+        {
+            Transform2D trans = new Transform2D();
+            trans.Position = position;
+
+            Entity shrub = Entity.CreateEntity("Tree", "Tree", trans);
+
+            //位置設定
+            shrub.RegisterComponent(new C_BezierPoint());
+            shrub.RegisterComponent(new C_Switch3());
+
+            C_DrawAnimetion drawComp = new C_DrawAnimetion(new Vector2(452, 276), 12);
+            drawComp.AddAnim("Pollution", new AnimData(1, 1, 1, "A_Shrub_Pollution"));
+            drawComp.AddAnim("Spring", new AnimData(1, 1, 1, "A_Shrub_Spring"));
+            drawComp.AddAnim("Summer", new AnimData(1, 1, 1, "A_Shrub_Summer"));
+            drawComp.AddAnim("Autumn", new AnimData(1, 1, 1, "A_Shrub_Autumn"));
+            drawComp.AddAnim("Winter", new AnimData(1, 1, 1, "A_Shrub_Winter"));
+            drawComp.AddAnim("Hidden", new AnimData(1, 1, 1, "A_Shrub_Hidden"));
+            shrub.RegisterComponent(drawComp);
+            drawComp.SetNowAnim("Pollution");
+
+            shrub.RegisterComponent(new C_UpdateShrubState(gameDevice));
+        }
+
         private void CreateBranch(Vector2 position)
         {
             Transform2D trans = new Transform2D();
@@ -194,32 +217,7 @@ namespace Season.Scene.Creators
         #endregion
 
         #region CreateWithLBC
-        private void CreateShrub(int l, int b, int c)
-        {
-            //実体生成
-            Entity shrub = Entity.CreateEntity("Tree", "Tree", new Transform2D());
 
-            //位置設定
-            C_BezierPoint bezier = new C_BezierPoint();
-            shrub.RegisterComponent(bezier);
-            bezier.SetBezierData(l, b, c);
-            bezier.SetRoute(BezierStage.GetNowRoute(l, b));
-            shrub.transform.Position = bezier.GetNowPosition();
-
-            shrub.RegisterComponent(new C_Switch3());
-
-            C_DrawAnimetion drawComp = new C_DrawAnimetion(new Vector2(452, 276), 12);
-            drawComp.AddAnim("Pollution", new AnimData(1, 1, 1, "A_Shrub_Pollution"));
-            drawComp.AddAnim("Spring", new AnimData(1, 1, 1, "A_Shrub_Spring"));
-            drawComp.AddAnim("Summer", new AnimData(1, 1, 1, "A_Shrub_Summer"));
-            drawComp.AddAnim("Autumn", new AnimData(1, 1, 1, "A_Shrub_Autumn"));
-            drawComp.AddAnim("Winter", new AnimData(1, 1, 1, "A_Shrub_Winter"));
-            drawComp.AddAnim("Hidden", new AnimData(1, 1, 1, "A_Shrub_Hidden"));
-            shrub.RegisterComponent(drawComp);
-            drawComp.SetNowAnim("Pollution");
-
-            shrub.RegisterComponent(new C_UpdateShrubState(gameDevice));
-        }
         #endregion
 
     }
