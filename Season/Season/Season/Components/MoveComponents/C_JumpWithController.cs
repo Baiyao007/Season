@@ -167,11 +167,11 @@ namespace Season.Components.MoveComponents
                 Vector2 direction = new Vector2((float)Math.Cos(radian), (float)Math.Sin(radian));
 
                 if (angle % 4 == 0 || angle % 4 == 3) { //Right
-                    Vector2 offset = Methord.RightAngleMove(direction, playerCollider.offsetPosition.Length());
+                    Vector2 offset = Method.RightAngleMove(direction, playerCollider.offsetPosition.Length());
                     entity.transform.Position = new Vector2(wallPosition.X - (playerCollider.radius + offset.X) - 10, entity.transform.Position.Y);
                 }
                 else {  //Left
-                    Vector2 offset = Methord.RightAngleMove(direction, playerCollider.offsetPosition.Length());
+                    Vector2 offset = Method.RightAngleMove(direction, playerCollider.offsetPosition.Length());
                     entity.transform.Position = new Vector2(wallPosition.X + (playerCollider.radius - offset.X) + 10, entity.transform.Position.Y);
                 }
                 SetStop();

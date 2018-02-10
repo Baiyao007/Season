@@ -91,7 +91,7 @@ namespace Season.Components.MoveComponents
 
             SetDirection(direction);
             speed += direction == 0 ? -startSpeed * 0.02f : startSpeed * 0.01f;
-            Methord.Clamp(0, startSpeed, ref speed);
+            Method.Clamp(0, startSpeed, ref speed);
         }
 
         private void SetDirection(int direction) {

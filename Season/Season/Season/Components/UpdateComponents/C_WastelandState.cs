@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Season.Components.NormalComponents;
 using Season.Entitys;
 using Season.Utility;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Season.Components.NormalComponents
+namespace Season.Components.UpdateComponents
 {
     class C_WastelandState : UpdateComponent
     {

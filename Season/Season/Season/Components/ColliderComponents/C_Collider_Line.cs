@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Season.Components.DrawComponents;
+using Season.Def;
 using Season.Entitys;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,24 @@ namespace Season.Components.ColliderComponents
             InitializeCollision();
         }
 
-        //public override void Update() { base.Update(); }
+        public override void Update() {
+            base.Update();
+
+            if (Parameter.IsDebug) {
+                if (drawLine == null) {
+                    List<Vector2> linePoint = new List<Vector2>() { Position1, Position2 };
+                    drawLine = new C_DrawLine(linePoint);
+                    drawEntity.RegisterComponent(drawLine);
+                }
+            }
+            else {
+                if (drawLine != null) {
+                    drawLine.DeActive();
+                    drawLine = null;
+                }
+            }
+
+        }
         //public override void Collition(ColliderComponent other) { base.Collition(other); }
 
         protected override void DoJostleCollision(ColliderComponent otherComp) {
@@ -53,10 +71,6 @@ namespace Season.Components.ColliderComponents
         public override void Active() {
             base.Active();
             //TODO 更新コンテナに自分を入れる
-
-            List<Vector2> linePoint = new List<Vector2>() { Position1, Position2 };
-            drawLine = new C_DrawLine(linePoint);
-            //drawEntity.RegisterComponent(drawLine);
         }
 
         public override void DeActive() {

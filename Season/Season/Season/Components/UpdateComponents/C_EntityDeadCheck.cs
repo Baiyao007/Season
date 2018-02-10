@@ -19,7 +19,7 @@ namespace Season.Components.UpdateComponents
 
         public override void Update()
         {
-            isDead = (!Methord.IsInScale(entity.transform.Position, Vector2.Zero, Parameter.StageSize));
+            isDead = (!Method.IsInScale(entity.transform.Position, Vector2.Zero, Parameter.StageSize));
         }
 
         public bool IsDead() { return isDead; }

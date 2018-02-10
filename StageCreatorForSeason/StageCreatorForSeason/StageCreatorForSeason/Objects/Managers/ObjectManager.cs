@@ -343,20 +343,20 @@ namespace StageCreatorForSeason.Objects
                 mapPointsList[(eObjectType)i].ForEach(o => {
                     o.Update(mouse.GetPosition());
                     o.CheckSelected(bezierIndex);
-                    if (o.IsMouseIn()) { mouse.AddTarget(o); }
+                    if (o.IsMouseIn) { mouse.AddTarget(o); }
                 });
             }
 
             entitysList.ForEach(o => {
                 o.Update(mouse.GetPosition());
                 o.CheckSelected(bezierIndex);
-                if (o.IsMouseIn()) { mouse.AddTarget(o); }
+                if (o.IsMouseIn) { mouse.AddTarget(o); }
             });
 
             hintsList.ForEach(l => l.ForEach(h => {
                 h.Update(mouse.GetPosition());
                 h.CheckSelected(bezierIndex);
-                if (h.IsMouseIn()) { mouse.AddTarget(h); }
+                if (h.IsMouseIn) { mouse.AddTarget(h); }
             }));
         }
 

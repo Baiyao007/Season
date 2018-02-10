@@ -128,10 +128,10 @@ namespace Season.Components.DrawComponents
             float rotateAngle = entity.transform.Angle;
             Vector2 broadSize = animSpriteSize;
 
-            vertexPositions[0] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f, -0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.Y, new Vector2(0, 0));
-            vertexPositions[1] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f, 0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.Y, new Vector2(0, 1));
-            vertexPositions[2] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f, -0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.X, new Vector2(1, 0));
-            vertexPositions[3] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f, 0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.X, new Vector2(1, 1));
+            vertexPositions[0] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f, -0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.Y, new Vector2(0, 0));
+            vertexPositions[1] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f, 0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.Y, new Vector2(0, 1));
+            vertexPositions[2] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f, -0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.X, new Vector2(1, 0));
+            vertexPositions[3] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f, 0.5f, 0) * size * Camera2D.GetZoom(), rotateAngle) * broadSize.X, new Vector2(1, 1));
 
             vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture), vertexPositions.Length, BufferUsage.None);
             vertexBuffer.SetData<VertexPositionTexture>(vertexPositions);
@@ -153,7 +153,7 @@ namespace Season.Components.DrawComponents
 
             Renderer_2D.DrawTexture(
                 nowAnim.AnimName,
-                position + Methord.RightAngleMove(direction, animSpriteSize.Y / 2),
+                position + Method.RightAngleMove(direction, animSpriteSize.Y / 2),
                 alpha,
                 motion.DrawingRange(),
                 Vector2.One * size,

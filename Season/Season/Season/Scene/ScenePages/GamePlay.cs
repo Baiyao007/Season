@@ -17,6 +17,7 @@ using Season.Scene.Creators;
 using Season.Components.DrawComponents;
 using Season.Components.NormalComponents;
 using Season.Components.ColliderComponents;
+using Season.Components.UpdateComponents;
 
 namespace Season.Scene.ScenePages
 {
@@ -85,7 +86,7 @@ namespace Season.Scene.ScenePages
 
             //毒沼生成（機能改善中）
             if (stageNo == 1) {
-                List<int> lb = new List<int>() { 4, 4 };
+                List<int> lb = new List<int>() { 4, 2 };
                 CreatWasteland(lb);
             }
         }
@@ -105,32 +106,35 @@ namespace Season.Scene.ScenePages
             C_BezierPoint bezier = new C_BezierPoint();
 
             //初期化毒沼
-            C_WastelandState wastelandState = new C_WastelandState(lb);
-            
-            bezier.SetBezierData(lb[0], lb[1], 0);
-            bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1]));
-            wastelandState.startPosition = bezier.GetNowPosition();
-            wastelandState.SetTargetY(wastelandState.startPosition.Y);
-
-            bezier.SetBezierData(lb[0], lb[1] + 1, 0);
-            bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1] + 1));
-            wastelandState.SetStartY(bezier.GetNowPosition().Y);
-
-            bezier.SetBezierData(lb[0], lb[1] + 4, 0);
-            bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1] + 4));
-            wastelandState.endPosition = bezier.GetNowPosition();
-
-            wasteland.transform.Position = wastelandState.startPosition;
-
-            wasteland.RegisterComponent(new C_DrawWasteland(gameDevice, wastelandState));
-
-
-            Vector2 offset = new Vector2(0, -120);
-            wasteland.RegisterComponent(new C_Collider_Circle("WastelandStart", offset, 80, eCollitionType.Through, false));
-            offset.X += (wastelandState.endPosition - wastelandState.startPosition).X;
-            wasteland.RegisterComponent(new C_Collider_Circle("WastelandEnd", offset, 80, eCollitionType.Through, false));
-
+            C_UpdateWastelandState wastelandState = new C_UpdateWastelandState(lb);
             wasteland.RegisterComponent(wastelandState);
+
+            //C_WastelandState wastelandState = new C_WastelandState(lb);
+
+            //bezier.SetBezierData(lb[0], lb[1], 0);
+            //bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1]));
+            //wastelandState.startPosition = bezier.GetNowPosition();
+            //wastelandState.SetTargetY(wastelandState.startPosition.Y);
+
+            //bezier.SetBezierData(lb[0], lb[1] + 1, 0);
+            //bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1] + 1));
+            //wastelandState.SetStartY(bezier.GetNowPosition().Y);
+
+            //bezier.SetBezierData(lb[0], lb[1] + 4, 0);
+            //bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1] + 4));
+            //wastelandState.endPosition = bezier.GetNowPosition();
+
+            //wasteland.transform.Position = wastelandState.startPosition;
+
+            //wasteland.RegisterComponent(new C_DrawWasteland(gameDevice, wastelandState));
+
+
+            //Vector2 offset = new Vector2(0, -120);
+            //wasteland.RegisterComponent(new C_Collider_Circle("WastelandStart", offset, 80, eCollitionType.Through, false));
+            //offset.X += (wastelandState.endPosition - wastelandState.startPosition).X;
+            //wasteland.RegisterComponent(new C_Collider_Circle("WastelandEnd", offset, 80, eCollitionType.Through, false));
+
+            //wasteland.RegisterComponent(wastelandState);
         }
         
         /// <summary>
@@ -138,8 +142,17 @@ namespace Season.Scene.ScenePages
         /// </summary>
         /// <param name="gameTime">時間</param>
         public void Update(GameTime gameTime) {
+
+            if (inputState.IsDown(Keys.W)) { Camera2D.ZoomIn(); }
+            if (inputState.IsDown(Keys.S)) { Camera2D.ZoomOut(); }
+
+            if (inputState.WasDown(Keys.I)) {
+                Parameter.IsDebug = !Parameter.IsDebug;
+            }
+
+
             if (isEnd) { return; }
-            if (inputState.WasDown(Keys.P, Buttons.X)) {
+            if (inputState.WasDown(Keys.P)) {
                 TaskManager.ChangePause();
                 isPause = !isPause;
             }
@@ -169,8 +182,9 @@ namespace Season.Scene.ScenePages
         /// 描画
         /// </summary>
         public void Draw() {
-            //Renderer_2D.DrawString("ObjectsCount:" + EntityManager.GetEntityCount(), new Vector2(10, 520), Color.Red, 0.5f);
-            //Renderer_2D.DrawString("ParticlesCount:" + gameDevice.GetParticlesCount(), new Vector2(10, 550), Color.Red, 0.5f);
+            if (!Parameter.IsDebug) { return; }
+            Renderer_2D.DrawString("ObjectsCount:" + EntityManager.GetEntityCount(), new Vector2(10, 520), Color.Red, 0.5f);
+            Renderer_2D.DrawString("ParticlesCount:" + gameDevice.GetParticlesCount(), new Vector2(10, 550), Color.Red, 0.5f);
         }
 
 

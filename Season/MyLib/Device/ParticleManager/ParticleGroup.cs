@@ -62,7 +62,7 @@ namespace MyLib.Device.ParticleManager
                 float angle = rand.Next(angleMin, angleMax);
                 float radian = MathHelper.ToRadians(angle);
                 Vector2 velocity = new Vector2(1, 0);
-                velocity = Methord.RotateVector2(velocity, (int)angle);
+                velocity = Method.RotateVector2(velocity, (int)angle);
 
                 particles.Add(new Particle(graphicsDevice, name, position, velocity, speed, size, alpha, radian, aliveTime, move, change, color));
             }

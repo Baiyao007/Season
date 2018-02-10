@@ -38,7 +38,8 @@ namespace Season.Components
         protected Timer distroyTimer;
         protected Timer awakeTimer;
         protected bool isSleep;
-        
+
+        public List<Vector2> points;
 
         public ColliderComponent(
             string colliderName,
@@ -56,6 +57,7 @@ namespace Season.Components
             this.collisionForm = collisionForm;
             this.isLocal = isLocal;
             results = new List<ColliderResult>();
+            points = new List<Vector2>();
 
             InitializeCollision();
         }
@@ -131,7 +133,7 @@ namespace Season.Components
             if (isLocal) {
                 float radian = MathHelper.ToRadians(entity.transform.Angle);
                 Vector2 direction = new Vector2((float)Math.Cos(radian), (float)Math.Sin(radian));
-                centerPosition = entity.transform.Position + Methord.RightAngleMove(direction, offsetPosition.Length());
+                centerPosition = entity.transform.Position + Method.RightAngleMove(direction, offsetPosition.Length());
                 centerPosition += IsRight()?  direction * offsetPosition.X : -direction * offsetPosition.X;
             }
         }
@@ -262,7 +264,7 @@ namespace Season.Components
             Vector2 normal = Vector2.Zero;
             bool isThroughThis = false;
             if (otherComp.collisionForm == eCollitionForm.Line) {
-                isThroughThis = Methord.CircleSegment(
+                isThroughThis = Method.CircleSegment(
                                         ref centerPosition,
                                         radius,
                                         ((C_Collider_Line)otherComp).Position1,
@@ -271,7 +273,7 @@ namespace Season.Components
                                     );
             }
             else if (collisionForm == eCollitionForm.Line) {
-                isThroughThis = Methord.CircleSegment(
+                isThroughThis = Method.CircleSegment(
                                         ref otherComp.centerPosition,
                                         otherComp.radius,
                                         ((C_Collider_Line)this).Position1,
@@ -287,7 +289,7 @@ namespace Season.Components
             bool isJostleThis = false;
             if (otherComp.collisionForm == eCollitionForm.Line) {
                 Vector2 check = centerPosition;
-                isJostleThis = Methord.CircleSegment(
+                isJostleThis = Method.CircleSegment(
                                       ref check,
                                       radius,
                                       ((C_Collider_Line)otherComp).Position1,
@@ -299,7 +301,7 @@ namespace Season.Components
             }
             else if (collisionForm == eCollitionForm.Line) {
                 Vector2 check = otherComp.centerPosition;
-                isJostleThis = Methord.CircleSegment(
+                isJostleThis = Method.CircleSegment(
                                       ref check,
                                       otherComp.radius,
                                       ((C_Collider_Line)this).Position1,

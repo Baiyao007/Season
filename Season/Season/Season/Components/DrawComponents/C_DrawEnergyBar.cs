@@ -35,7 +35,7 @@ namespace Season.Components.DrawComponents
             if (angle % 180 == 0) { angle--; }
             float radian = MathHelper.ToRadians(angle);
             Vector2 direction = new Vector2((float)Math.Cos(radian), (float)Math.Sin(radian));
-            Vector2 offsetVert = Methord.RightAngleMove(direction, 270);
+            Vector2 offsetVert = Method.RightAngleMove(direction, 270);
 
             angle += 90;
             int area = (int)(angle / 90);
@@ -47,10 +47,10 @@ namespace Season.Components.DrawComponents
             Vector2 offsetHori = Vector2.Zero;
             if (area % 4 == 0 || area % 4 == 2)
             {
-                offsetHori = Methord.RightAngleMove(direction, 40);
+                offsetHori = Method.RightAngleMove(direction, 40);
             }
             else {
-                offsetHori = Methord.RightAngleMove(direction, -40);
+                offsetHori = Method.RightAngleMove(direction, -40);
             }
             Renderer_2D.DrawTexture(
                 name, 

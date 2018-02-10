@@ -81,7 +81,10 @@ namespace StageCreatorForSeason.Objects
         }
 
         public void dragging(Vector2 position) { this.position = position; }
-        public bool IsMouseIn() { return isMouseIn; }
+        public bool IsMouseIn {
+            get { return isMouseIn; }
+            set { isMouseIn = value; }
+        }
 
         public void Update(Vector2 mousePosition) {
             isMouseIn = (position - mousePosition).LengthSquared() <= radius * radius;
@@ -101,7 +104,7 @@ namespace StageCreatorForSeason.Objects
 
             Renderer_2D.End();
         }
-        protected void DrawCollition() {
+        protected virtual void DrawCollition() {
             Renderer_2D.Begin(Camera2D.GetTransform());
 
             Color color = isMouseIn ? Color.Red : Color.Yellow;

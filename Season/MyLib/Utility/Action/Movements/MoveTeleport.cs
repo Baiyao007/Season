@@ -39,10 +39,10 @@ namespace MyLib.Utility.Action.Movements
                 timer.SetTimer((float)rand.NextDouble() / 2);
 
                 if (isClockwise) {
-                    velocity = Methord.RotateVector2(velocity, -90);
+                    velocity = Method.RotateVector2(velocity, -90);
                 }
                 else {
-                    velocity = Methord.RotateVector2(velocity, 90);
+                    velocity = Method.RotateVector2(velocity, 90);
                 }
             }
         }

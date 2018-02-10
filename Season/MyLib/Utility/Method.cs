@@ -8,10 +8,11 @@
 
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace MyLib.Utility
 {
-    public static class Methord
+    public static class Method
     {
         //for内forのまとめ
         public static void MyForeach(Action<int, int> action, Vector2 xy)
@@ -119,9 +120,6 @@ namespace MyLib.Utility
             return angle;
         }
 
-
-
-
         public static bool CircleSegment(ref Vector2 center, float radius, Vector2 p1, Vector2 p2, ref Vector2 normal) {
             Vector2 v = p2 - p1;
             float r2 = radius * radius;
@@ -161,16 +159,30 @@ namespace MyLib.Utility
             return false;
         }
 
-        
-        public static void Warp(float min, float max, ref float value) {
-            if (Math.Min(value, min) == value) {
-                value = max;
-                return;
-            }
-            else if (Math.Max(value, max) == value) {
-                value = min;
-                return;
-            }
+        public static bool Circle_Ray(
+            ref Vector2 centre, 
+            Vector2 L_startPoint, 
+            Vector2 n_Ray, 
+            float radius, 
+            ref Vector2 cp1, 
+            ref Vector2 cp2)
+        {
+            Vector2 v1 = L_startPoint - centre;
+            float D = Vector2.Dot(n_Ray, v1) * Vector2.Dot(n_Ray, v1) - Vector2.Dot(v1, v1) + radius * radius;
+            if (D < 0) { return false; }
+            float t1 = -Vector2.Dot(n_Ray, v1) - (float)Math.Sqrt(D);
+            float t2 = -Vector2.Dot(n_Ray, v1) + (float)Math.Sqrt(D);
+
+            cp1 = t1 > 0 ? L_startPoint + t1 * n_Ray : cp1;
+            cp2 = t2 > 0 ? L_startPoint + t2 * n_Ray : cp2;
+            
+            return true;
+        }
+
+        public static float Warp(float min, float max, float value) {
+            if (Math.Min(value, min) == value) { return max; }
+            else if (Math.Max(value, max) == value) { return min; }
+            return value;
         }
 
         public static void Warp(int min, int max, ref int value) {
@@ -192,5 +204,15 @@ namespace MyLib.Utility
         {
             return Math.Max(bezierIndex, min);
         }
+
+
+        public static T Begin<T>(this List<T> list) {
+            return list[0];
+        }
+
+        public static T End<T>(this List<T> list) {
+            return list[list.Count - 1];
+        }
+
     }
 }

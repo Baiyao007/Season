@@ -63,10 +63,10 @@ namespace Season.Utility
         {
             float rotateAngle = 0;
 
-            vertexPositions[0] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * size.X, -0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(0, 0));
-            vertexPositions[1] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * size.X, 0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(0, 1));
-            vertexPositions[2] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * size.X, -0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(1, 0));
-            vertexPositions[3] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * size.X, 0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(1, 1));
+            vertexPositions[0] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * size.X, -0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(0, 0));
+            vertexPositions[1] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * size.X, 0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(0, 1));
+            vertexPositions[2] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * size.X, -0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(1, 0));
+            vertexPositions[3] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * size.X, 0.5f * size.Y, 0) * Camera2D.GetZoom(), rotateAngle) * imageSize.X, new Vector2(1, 1));
 
             vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture), vertexPositions.Length, BufferUsage.None);
             vertexBuffer.SetData<VertexPositionTexture>(vertexPositions);
