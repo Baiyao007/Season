@@ -3,7 +3,7 @@ using MyLib.Device;
 using MyLib.Utility;
 using MyLib.Utility.Action.Movements;
 using MyLib.Utility.Action.TheChange;
-using Season.Components.NormalComponents;
+using Season.Components.UpdateComponents;
 using Season.Utility;
 using System;
 using System.Collections.Generic;

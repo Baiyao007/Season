@@ -118,10 +118,10 @@ namespace Season.Components.DrawComponents
         {
             float rotateAngle = entity.transform.Angle;
 
-            vertexPositions[0] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * baseImgSize.X, -0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 0));
-            vertexPositions[1] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * baseImgSize.X, 0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 1));
-            vertexPositions[2] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * baseImgSize.X, -0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 0));
-            vertexPositions[3] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * baseImgSize.X, 0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 1));
+            vertexPositions[0] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * baseImgSize.X, -0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 0));
+            vertexPositions[1] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * baseImgSize.X, 0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 1));
+            vertexPositions[2] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * baseImgSize.X, -0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 0));
+            vertexPositions[3] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * baseImgSize.X, 0.5f * baseImgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 1));
 
             vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture), vertexPositions.Length, BufferUsage.None);
             vertexBuffer.SetData<VertexPositionTexture>(vertexPositions);
@@ -143,7 +143,7 @@ namespace Season.Components.DrawComponents
                 graphicsDevice.RasterizerState = RasterizerState.CullClockwise;
                 effect.Parameters["Rate"].SetValue(shadeTimer.Rate());
 
-                Vector2 drawPosition = position + Camera2D.GetOffsetPosition() + Methord.RightAngleMove(direction, animSpriteSize.Y / 2);
+                Vector2 drawPosition = position + Camera2D.GetOffsetPosition() + Method.RightAngleMove(direction, animSpriteSize.Y / 2);
                 Vector3 drawP3 = new Vector3(drawPosition, 0);
 
                 VertexUpdate(drawP3);
@@ -168,7 +168,7 @@ namespace Season.Components.DrawComponents
 
                 Renderer_2D.DrawTexture(
                     nowAnim.AnimName,
-                    position + Methord.RightAngleMove(direction, animSpriteSize.Y / 2),
+                    position + Method.RightAngleMove(direction, animSpriteSize.Y / 2),
                     alpha,
                     motion.DrawingRange(),
                     Vector2.One * size,

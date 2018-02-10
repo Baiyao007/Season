@@ -64,11 +64,39 @@ namespace StageCreatorForSeason.Objects
 
             Renderer_2D.Begin(Camera2D.GetTransform());
 
-            Renderer_2D.DrawLine(leftTop.Position, rightBottom.Position, Color.LightBlue, false);
+            //Renderer_2D.DrawLine(leftTop.Position, rightBottom.Position, Color.LightBlue, false);
+
+            Vector2 centre = (leftTop.Position + rightBottom.Position) / 2;
+            Vector2 square = rightBottom.Position - leftTop.Position;            
+            Vector2 size = ResouceManager.GetTextureSize("UnitLine");
+            square.X /= size.X;
+            square.Y /= size.Y;
+            Rectangle rect = new Rectangle(0, 0, (int)size.X, (int)size.Y);
+
+            Renderer_2D.DrawTexture("UnitLine", centre, 0.2f, rect, square, 0, size / 2);
 
             Renderer_2D.End();
         }
 
+
+        protected override void DrawCollition()
+        {
+            Renderer_2D.Begin(Camera2D.GetTransform());
+
+            Color color = isMouseIn ? Color.Red : Color.Yellow;
+
+            if (isMouseIn) {
+                leftTop.IsMouseIn = true;
+                rightBottom.IsMouseIn = true;
+            }
+
+            Vector2 imgSize = ResouceManager.GetTextureSize("CollisionArea");
+            Rectangle rect = new Rectangle(0, 0, (int)imgSize.X, (int)imgSize.Y);
+            Vector2 drawSize = new Vector2(radius / imgSize.X, radius / imgSize.Y) * 2;
+            Renderer_2D.DrawTexture("CollisionArea", position, color, 0.5f, rect, drawSize, 0, imgSize / 2);
+
+            Renderer_2D.End();
+        }
 
     }
 }

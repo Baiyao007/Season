@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Season.Components.DrawComponents;
+using Season.Def;
 using Season.Entitys;
 
 namespace Season.Components.ColliderComponents
@@ -7,6 +8,7 @@ namespace Season.Components.ColliderComponents
     class C_Collider_Circle : ColliderComponent
     {
         private C_DrawSpriteAutoSize drawCircle;
+        private C_DrawSpriteAutoSize debugCircle;
         private Entity drawEntity;
 
         public C_Collider_Circle(
@@ -24,10 +26,40 @@ namespace Season.Components.ColliderComponents
         public override void Update()
         {
             base.Update();
-                       
-            //if (isLocal) { return; }
+
+
+            //if (isLocal) { }
             drawEntity.transform.Position = centerPosition;
-            drawCircle.SetSize(Vector2.One * radius);
+            if (drawCircle != null) {
+                drawCircle.SetSize(Vector2.One * radius);
+            }
+            
+
+            if (Parameter.IsDebug) {
+                if (debugCircle == null) {
+                    debugCircle = new C_DrawSpriteAutoSize("CollisionArea", offsetPosition, Vector2.One * radius, 100);
+                    drawEntity.RegisterComponent(debugCircle);
+                }
+            }
+            else {
+                if (debugCircle != null) {
+                    debugCircle.DeActive();
+                    debugCircle = null;
+                }
+            }
+
+            if (debugCircle == null) { return; }
+            if (results.Count > 0) {
+                bool isCollide = false;
+                for (int i = 0; i < results.Count; i++) {
+                    isCollide = results[i].IsCollide();
+                    if (isCollide) { break; }
+                }
+                if (isCollide) { debugCircle.SetColor(Color.Red); }
+                else { debugCircle.SetColor(Color.LightGreen); }
+            }
+            else { debugCircle.SetColor(Color.LightGreen); }
+
         }
 
         //public override void Collition(ColliderComponent other) { base.Collition(other); }
@@ -42,12 +74,10 @@ namespace Season.Components.ColliderComponents
         }
 
         protected override void DoThroughCollision(ColliderComponent otherComp) {
-            if (otherComp.collisionForm == eCollitionForm.Circle)
-            {
+            if (otherComp.collisionForm == eCollitionForm.Circle) {
                 Through_Circle_Circle(otherComp);
             }
-            else if (otherComp.collisionForm == eCollitionForm.Line)
-            {
+            else if (otherComp.collisionForm == eCollitionForm.Line) {
                 Through_Circle_Line(otherComp);
             }
         }
@@ -58,10 +88,6 @@ namespace Season.Components.ColliderComponents
 
             if (colliderName == "OverseeCircle") {
                 drawCircle = new C_DrawSpriteAutoSize("E_CheckArea", offsetPosition, Vector2.One * radius, 15, 0.5f);
-                drawEntity.RegisterComponent(drawCircle);
-            }
-            else {
-                drawCircle = new C_DrawSpriteAutoSize("CollisionArea", offsetPosition, Vector2.One * radius, 100);
                 drawEntity.RegisterComponent(drawCircle);
             }
             centerPosition = entity.transform.Position + offsetPosition;

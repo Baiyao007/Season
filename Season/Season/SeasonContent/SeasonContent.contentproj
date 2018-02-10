@@ -934,6 +934,463 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_0.png">
+      <Name>Stage1FarLayer0_0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_1.png">
+      <Name>Stage1FarLayer0_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_10.png">
+      <Name>Stage1FarLayer0_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_11.png">
+      <Name>Stage1FarLayer0_11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_12.png">
+      <Name>Stage1FarLayer0_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_13.png">
+      <Name>Stage1FarLayer0_13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_14.png">
+      <Name>Stage1FarLayer0_14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_15.png">
+      <Name>Stage1FarLayer0_15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_16.png">
+      <Name>Stage1FarLayer0_16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_17.png">
+      <Name>Stage1FarLayer0_17</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_18.png">
+      <Name>Stage1FarLayer0_18</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_19.png">
+      <Name>Stage1FarLayer0_19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_2.png">
+      <Name>Stage1FarLayer0_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_20.png">
+      <Name>Stage1FarLayer0_20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_21.png">
+      <Name>Stage1FarLayer0_21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_22.png">
+      <Name>Stage1FarLayer0_22</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_23.png">
+      <Name>Stage1FarLayer0_23</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_24.png">
+      <Name>Stage1FarLayer0_24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_25.png">
+      <Name>Stage1FarLayer0_25</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_26.png">
+      <Name>Stage1FarLayer0_26</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_27.png">
+      <Name>Stage1FarLayer0_27</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_28.png">
+      <Name>Stage1FarLayer0_28</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_29.png">
+      <Name>Stage1FarLayer0_29</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_3.png">
+      <Name>Stage1FarLayer0_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_30.png">
+      <Name>Stage1FarLayer0_30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_31.png">
+      <Name>Stage1FarLayer0_31</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_32.png">
+      <Name>Stage1FarLayer0_32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_33.png">
+      <Name>Stage1FarLayer0_33</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_34.png">
+      <Name>Stage1FarLayer0_34</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_35.png">
+      <Name>Stage1FarLayer0_35</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_36.png">
+      <Name>Stage1FarLayer0_36</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_37.png">
+      <Name>Stage1FarLayer0_37</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_38.png">
+      <Name>Stage1FarLayer0_38</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_39.png">
+      <Name>Stage1FarLayer0_39</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_4.png">
+      <Name>Stage1FarLayer0_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_40.png">
+      <Name>Stage1FarLayer0_40</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_41.png">
+      <Name>Stage1FarLayer0_41</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_42.png">
+      <Name>Stage1FarLayer0_42</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_43.png">
+      <Name>Stage1FarLayer0_43</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_44.png">
+      <Name>Stage1FarLayer0_44</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_45.png">
+      <Name>Stage1FarLayer0_45</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_46.png">
+      <Name>Stage1FarLayer0_46</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_47.png">
+      <Name>Stage1FarLayer0_47</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_48.png">
+      <Name>Stage1FarLayer0_48</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_49.png">
+      <Name>Stage1FarLayer0_49</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_5.png">
+      <Name>Stage1FarLayer0_5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_6.png">
+      <Name>Stage1FarLayer0_6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_7.png">
+      <Name>Stage1FarLayer0_7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_8.png">
+      <Name>Stage1FarLayer0_8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FarLayer0_9.png">
+      <Name>Stage1FarLayer0_9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_10.png">
+      <Name>Stage1FrontLayer0_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_11.png">
+      <Name>Stage1FrontLayer0_11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_12.png">
+      <Name>Stage1FrontLayer0_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_13.png">
+      <Name>Stage1FrontLayer0_13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_14.png">
+      <Name>Stage1FrontLayer0_14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_15.png">
+      <Name>Stage1FrontLayer0_15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_16.png">
+      <Name>Stage1FrontLayer0_16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_17.png">
+      <Name>Stage1FrontLayer0_17</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_18.png">
+      <Name>Stage1FrontLayer0_18</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_19.png">
+      <Name>Stage1FrontLayer0_19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_20.png">
+      <Name>Stage1FrontLayer0_20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_21.png">
+      <Name>Stage1FrontLayer0_21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_22.png">
+      <Name>Stage1FrontLayer0_22</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_23.png">
+      <Name>Stage1FrontLayer0_23</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_24.png">
+      <Name>Stage1FrontLayer0_24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_25.png">
+      <Name>Stage1FrontLayer0_25</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_26.png">
+      <Name>Stage1FrontLayer0_26</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_27.png">
+      <Name>Stage1FrontLayer0_27</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_28.png">
+      <Name>Stage1FrontLayer0_28</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_29.png">
+      <Name>Stage1FrontLayer0_29</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_30.png">
+      <Name>Stage1FrontLayer0_30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_31.png">
+      <Name>Stage1FrontLayer0_31</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_32.png">
+      <Name>Stage1FrontLayer0_32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_33.png">
+      <Name>Stage1FrontLayer0_33</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_34.png">
+      <Name>Stage1FrontLayer0_34</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_35.png">
+      <Name>Stage1FrontLayer0_35</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_36.png">
+      <Name>Stage1FrontLayer0_36</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_37.png">
+      <Name>Stage1FrontLayer0_37</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_38.png">
+      <Name>Stage1FrontLayer0_38</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_39.png">
+      <Name>Stage1FrontLayer0_39</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_40.png">
+      <Name>Stage1FrontLayer0_40</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_41.png">
+      <Name>Stage1FrontLayer0_41</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_42.png">
+      <Name>Stage1FrontLayer0_42</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_43.png">
+      <Name>Stage1FrontLayer0_43</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_44.png">
+      <Name>Stage1FrontLayer0_44</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_45.png">
+      <Name>Stage1FrontLayer0_45</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_46.png">
+      <Name>Stage1FrontLayer0_46</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_47.png">
+      <Name>Stage1FrontLayer0_47</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_48.png">
+      <Name>Stage1FrontLayer0_48</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_49.png">
+      <Name>Stage1FrontLayer0_49</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="IMAGE\StageLayers\Stage1FrontLayer0_9.png">
+      <Name>Stage1FrontLayer0_9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

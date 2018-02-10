@@ -97,7 +97,7 @@
     <Compile Include="Utility\Action\ButtonActions\IWave_Y.cs" />
     <Compile Include="Utility\CSVReader.cs" />
     <Compile Include="Utility\Action\IButtonAction.cs" />
-    <Compile Include="Utility\Methord.cs" />
+    <Compile Include="Utility\Method.cs" />
     <Compile Include="Utility\Motion.cs" />
     <Compile Include="Utility\Action\IMoveAble.cs" />
     <Compile Include="Utility\Range.cs" />

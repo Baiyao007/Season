@@ -36,11 +36,11 @@ namespace MyLib.Utility.Action.Movements
         {
             if (isClockwise) { nowAngle -= 10; }
             else { nowAngle += 10; }
-            Methord.Warp(0, 360 - 1, ref nowAngle);
+            nowAngle = Method.Warp(0, 360, nowAngle);
             float radian = MathHelper.ToRadians(nowAngle);
 
             velocity = new Vector2((float)Math.Cos(radian) * radius.X, (float)Math.Sin(radian) * radius.Y);
-            velocity = Methord.RotateVector2(velocity, startAngle);
+            velocity = Method.RotateVector2(velocity, startAngle);
         }
     }
 }

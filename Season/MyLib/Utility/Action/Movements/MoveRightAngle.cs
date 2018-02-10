@@ -37,10 +37,10 @@ namespace MyLib.Utility.Action.Movements
         {
             if (isRight)
             {
-                velocity = Methord.RotateVector2(velocity, -90);
+                velocity = Method.RotateVector2(velocity, -90);
             }
             else {
-                velocity = Methord.RotateVector2(velocity, 90);
+                velocity = Method.RotateVector2(velocity, 90);
             }
         }
     }

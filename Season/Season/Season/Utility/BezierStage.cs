@@ -12,13 +12,7 @@ namespace Season.Utility
 {
     static class Extensions
     {
-        public static T Begin<T>(this List<T> list) {
-            return list[0];
-        }
 
-        public static T End<T>(this List<T> list) {
-            return list[list.Count - 1];
-        }
 
     }
 
@@ -28,6 +22,22 @@ namespace Season.Utility
         static private List<List<Vector2>> controllPoints = new List<List<Vector2>>();
         static private List<List<Vector2>> blockMapList = new List<List<Vector2>>();
         static bool isEnd = false;
+
+        public static int AddRoute(List<Vector2> route) {
+            controllPoints.Add(route);
+            return controllPoints.Count - 1;
+        }
+
+        public static void DeleteRoute(int index) {
+            controllPoints.RemoveAt(index);
+            for (int i = index + 1; i < controllPoints.Count; i++) {
+                controllPoints[i - 1] = controllPoints[i];
+            }
+        }
+
+        public static Vector2 GetControllPointPosition(int l, int b) {
+            return controllPoints[l][b];
+        }
 
         public static void InitializeStage(int stageNo) {
             controllPoints.Clear();

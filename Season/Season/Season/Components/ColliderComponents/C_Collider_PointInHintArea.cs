@@ -1,17 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using MyLib.Utility;
 using Season.Components.DrawComponents;
+using Season.Def;
 using Season.Entitys;
 
 namespace Season.Components.ColliderComponents
 {
-    class C_Collider_HintArea : ColliderComponent
+    class C_Collider_PointInHintArea : ColliderComponent
     {
         private C_DrawSpriteAutoSize drawSquare;
         private Entity drawEntity;
         private Vector2 size;
 
-        public C_Collider_HintArea(
+        public C_Collider_PointInHintArea(
             string colliderName,
             Vector2 position,
             Vector2 size
@@ -25,6 +26,21 @@ namespace Season.Components.ColliderComponents
 
         public override void Update() {
             base.Update();
+
+            if (Parameter.IsDebug) {
+                if (drawSquare == null) {
+                    drawSquare = new C_DrawSpriteAutoSize("UnitLine", offsetPosition, size / 2, 100, 0.2f);
+                    drawSquare.SetColor(Color.LightYellow);
+                    drawEntity.RegisterComponent(drawSquare);
+                }
+            }
+            else {
+                if (drawSquare != null) {
+                    drawSquare.DeActive();
+                    drawSquare = null;
+                }
+            }
+
         }
 
         //public override void Collition(ColliderComponent other) { base.Collition(other); }
@@ -38,12 +54,12 @@ namespace Season.Components.ColliderComponents
 
         private void Through_Point_Square(ColliderComponent otherComp) {
             Vector2 otherPosition = otherComp.GetEntity().transform.Position;
-            bool isThroughThis = Methord.IsInScale(otherPosition, centerPosition - size / 2, size);
+            bool isThroughThis = Method.IsInScale(otherPosition, centerPosition - size / 2, size);
             SetResultDataThrough(isThroughThis, otherComp);
         }
         private void Jostle_Point_Square(ColliderComponent otherComp) {
             Vector2 otherPosition = otherComp.GetEntity().transform.Position;
-            bool isJostleThis = Methord.IsInScale(otherPosition, centerPosition - size / 2, size);
+            bool isJostleThis = Method.IsInScale(otherPosition, centerPosition - size / 2, size);
             SetResultDataJostle(isJostleThis, otherComp);
         }
 
@@ -52,10 +68,7 @@ namespace Season.Components.ColliderComponents
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
-            drawSquare = new C_DrawSpriteAutoSize("UnitLine", offsetPosition, size / 2, 100, 0.5f);
-            drawSquare.SetColor(Color.LightYellow);
             drawEntity.transform.Position = centerPosition;
-            drawEntity.RegisterComponent(drawSquare);
         }
 
         public override void DeActive() {

@@ -53,10 +53,10 @@ namespace Season.Components.DrawComponents
             float rotateAngle = 0;  //entity.transform.Angle;
             Vector2 imgSize = Vector2.One * 48;
 
-            vertexPositions[0] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * imgSize.X, -0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 0));
-            vertexPositions[1] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * imgSize.X, 0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 1));
-            vertexPositions[2] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * imgSize.X, -0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 0));
-            vertexPositions[3] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * imgSize.X, 0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 1));
+            vertexPositions[0] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * imgSize.X, -0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 0));
+            vertexPositions[1] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * imgSize.X, 0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 1));
+            vertexPositions[2] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * imgSize.X, -0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 0));
+            vertexPositions[3] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * imgSize.X, 0.5f * imgSize.Y, 0) * size * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 1));
 
             vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture), vertexPositions.Length, BufferUsage.None);
             vertexBuffer.SetData<VertexPositionTexture>(vertexPositions);
@@ -72,7 +72,7 @@ namespace Season.Components.DrawComponents
 
             float radian = MathHelper.ToRadians(angle);
             Vector2 direction = new Vector2((float)Math.Cos(radian), (float)Math.Sin(radian));
-            Vector2 offsetVert = Methord.RightAngleMove(direction, 270);
+            Vector2 offsetVert = Method.RightAngleMove(direction, 270);
 
             angle += 90;
             int area = (int)(angle / 90);
@@ -81,9 +81,9 @@ namespace Season.Components.DrawComponents
 
             Vector2 offsetHori = Vector2.Zero;
             if (area % 4 == 0 || area % 4 == 2) {
-                offsetHori = Methord.RightAngleMove(direction, -80);
+                offsetHori = Method.RightAngleMove(direction, -80);
             } else {
-                offsetHori = Methord.RightAngleMove(direction, 80);
+                offsetHori = Method.RightAngleMove(direction, 80);
             }
 
             Timer skillCD = seasonState.GetSkillCD();
@@ -165,7 +165,7 @@ namespace Season.Components.DrawComponents
 //            float angle = entity.transform.Angle;
 //            float radian = MathHelper.ToRadians(angle);
 //            Vector2 direction = new Vector2((float)Math.Cos(radian), (float)Math.Sin(radian));
-//            Vector2 offsetVert = Methord.RightAngleMove(direction, 270);
+//            Vector2 offsetVert = Method.RightAngleMove(direction, 270);
 
 //            angle += 90;
 //            int area = (int)(angle / 90);
@@ -174,10 +174,10 @@ namespace Season.Components.DrawComponents
 
 //            Vector2 offsetHori = Vector2.Zero;
 //            if (area % 4 == 0 || area % 4 == 2) {
-//                offsetHori = Methord.RightAngleMove(direction, -80);
+//                offsetHori = Method.RightAngleMove(direction, -80);
 //            }
 //            else {
-//                offsetHori = Methord.RightAngleMove(direction, 80);
+//                offsetHori = Method.RightAngleMove(direction, 80);
 //            }
 
 //            for (int i = 0; i < (int)eSeason.None; i++)

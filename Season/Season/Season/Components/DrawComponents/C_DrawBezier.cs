@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MyLib.Device;
+using Season.Def;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace Season.Components.DrawComponents
 
         public override void Draw()
         {
+            if (!Parameter.IsDebug) { return; }
+
             Renderer_2D.Begin(Camera2D.GetTransform());
 
             for (int i = 0; i < bezierPoints.Count; i++) {

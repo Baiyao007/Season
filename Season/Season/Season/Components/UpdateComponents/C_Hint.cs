@@ -10,7 +10,7 @@ namespace Season.Components.UpdateComponents
 {
     class C_Hint : UpdateComponent
     {
-        private C_Collider_HintArea hintArea;
+        private C_Collider_PointInHintArea hintArea;
         private C_DrawSpriteNormal draw;
         private Vector2 imgPosition;
         private Vector2 areaCentre;
@@ -57,7 +57,7 @@ namespace Season.Components.UpdateComponents
         {
             base.Active();
             //TODO 更新コンテナに自分を入れる
-            hintArea = new C_Collider_HintArea(imgName, areaCentre, areaSize);
+            hintArea = new C_Collider_PointInHintArea(imgName, areaCentre, areaSize);
             hintArea.Active();
             TaskManager.AddTask(hintArea);
         }

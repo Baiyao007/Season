@@ -97,7 +97,7 @@ namespace Season.Components.NormalComponents
             if (route[cursor] == previousPosition) { return; }
             Vector2 direct = route[cursor] - previousPosition;
             float radian = (float)Math.Atan2(direct.Y, direct.X);
-            entity.transform.Angle = Methord.ToDegree(radian);
+            entity.transform.Angle = Method.ToDegree(radian);
         }
 
         public void CheckJumpMove() {

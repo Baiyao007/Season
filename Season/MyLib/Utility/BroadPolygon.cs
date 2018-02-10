@@ -61,10 +61,10 @@ namespace MyLib.Utility
 
         private void VertexUpdate(Vector3 drawPosition) {
             float rotateAngle = MathHelper.ToDegrees(radian);
-            vertexPositions[0] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * broadSize.X, -0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 0));
-            vertexPositions[1] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(-0.5f * broadSize.X,  0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 1));
-            vertexPositions[2] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3( 0.5f * broadSize.X, -0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 0));
-            vertexPositions[3] = new VertexPositionTexture(drawPosition + Methord.RotateVector3(new Vector3(0.5f * broadSize.X, 0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 1));
+            vertexPositions[0] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * broadSize.X, -0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 0));
+            vertexPositions[1] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(-0.5f * broadSize.X,  0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(0, 1));
+            vertexPositions[2] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3( 0.5f * broadSize.X, -0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 0));
+            vertexPositions[3] = new VertexPositionTexture(drawPosition + Method.RotateVector3(new Vector3(0.5f * broadSize.X, 0.5f * broadSize.Y, 0) * size.X * Camera2D.GetZoom(), rotateAngle), new Vector2(1, 1));
 
             vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture), vertexPositions.Length, BufferUsage.None);
             vertexBuffer.SetData<VertexPositionTexture>(vertexPositions);
