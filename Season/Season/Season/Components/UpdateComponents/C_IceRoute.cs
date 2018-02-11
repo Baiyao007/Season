@@ -42,7 +42,7 @@ namespace Season.Components.UpdateComponents
             };
             bezierIndex = BezierStage.AddRoute(route);
 
-            aliveTimer = Parameter.IceRouteTime;
+            aliveTimer = new Timer(Parameter.IceRouteTime);
             aliveTimer.Dt = new Timer.timerDelegate(DeActive);
 
             canMoveRight = false;
