@@ -23,7 +23,7 @@ namespace Season.Components.MoveComponents
             startSpeed = speed;
             if (isJump)
             {
-                currentJumpPower = -20;
+                currentJumpPower = -25;
             }
             else {
                 currentJumpPower = 0;

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MyLib.Device;
-using Season.Def;
 using System;
 using MyLib.Utility;
-using Season.Components.NormalComponents;
 using Season.Utility;
 using Microsoft.Xna.Framework.Graphics;
 using Season.Components.UpdateComponents;
@@ -69,16 +67,14 @@ namespace Season.Components.DrawComponents
         public void SetSize(Vector2 size) { this.size = size; }
 
         private void CreatEffectOne() {
-            int nowNo = 0;
             if (imageNames.Count > 1) {
-                nowNo = creatNO;
                 creatNO++;
-                if (creatNO >= imageNames.Count) { creatNO -= imageNames.Count; }
+                creatNO = (int)Method.Warp(0, imageNames.Count, creatNO);
             }
 
             float offset = rand.Next(randArea) + offsetY;
 
-            ImageEffect effect = new ImageEffect(imageNames[nowNo], entity.transform.Position + new Vector2(0, offset), aliveSecond);
+            ImageEffect effect = new ImageEffect(imageNames[creatNO], entity.transform.Position + new Vector2(0, offset), aliveSecond);
             effect.size = size;
             imageEffects.Add(effect);
 

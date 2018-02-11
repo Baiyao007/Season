@@ -81,9 +81,6 @@ namespace Season.Components.UpdateComponents
 
                 Method.Circle_Ray(ref colliderCentre, lt, rayNormal, radius, ref crossPoint1, ref crossPoint2);
 
-                //if (crossPoint1 == Vector2.Zero) { crossPoint1 = lt; }
-                //if (crossPoint2 == Vector2.Zero) { crossPoint2 = lt; }
-
                 //F,9482,759 ,9499,1079 ,948,437
 
                 crossPoint1 = crossPoint1.X > rb.X ? rb : crossPoint1;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MyLib.Utility;
 using Season.Components.ColliderComponents;
+using Season.Components.DrawComponents;
 using Season.Def;
 using Season.Utility;
 using System;
@@ -19,6 +20,7 @@ namespace Season.Components.UpdateComponents
 
         private C_Collider_PointInHintArea childRightStop;
         private C_Collider_PointInHintArea childLeftStop;
+        private C_DrawIceRoute draw;
 
         bool canMoveRight;
         bool canMoveLeft;
@@ -27,6 +29,8 @@ namespace Season.Components.UpdateComponents
         {
             this.startPosition = startPosition;
             this.endPosition = endPosition;
+
+            draw = new C_DrawIceRoute(startPosition, endPosition);
 
             childRightStop = new C_Collider_PointInHintArea("childRightStop", startPosition - Vector2.One * 20, new Vector2(60, 40));
             childLeftStop = new C_Collider_PointInHintArea("childLeftStop", endPosition - new Vector2(40, 20), new Vector2(60, 40));
@@ -38,7 +42,7 @@ namespace Season.Components.UpdateComponents
             };
             bezierIndex = BezierStage.AddRoute(route);
 
-            aliveTimer = new Timer(5);   //Parameter.IceRouteTime
+            aliveTimer = Parameter.IceRouteTime;
             aliveTimer.Dt = new Timer.timerDelegate(DeActive);
 
             canMoveRight = false;
@@ -77,6 +81,11 @@ namespace Season.Components.UpdateComponents
 
         public override void Update() {
             aliveTimer.Update();
+
+
+
+
+
         }
 
 
@@ -87,6 +96,9 @@ namespace Season.Components.UpdateComponents
         {
             base.Active();
             //TODO 更新コンテナに自分を入れる
+
+            draw.Active();
+            TaskManager.AddTask(draw);
         }
 
         public override void DeActive()
