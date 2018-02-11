@@ -20,7 +20,7 @@ namespace Season.Def
         public static readonly int BackGroundSize = 2000;
 
         public static readonly float PlayerLimitSpeed = 10;
-        public static readonly float IceRouteTime = 20;
+        public static readonly float IceRouteTime = 5;
 
         public static Vector2 FrameLT = Vector2.Zero;
         public static Vector2 FrameRB = ScreenSize;

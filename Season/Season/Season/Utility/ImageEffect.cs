@@ -20,8 +20,6 @@ namespace Season.Utility
 
         public Vector2 size;
 
-        //private Timer transTimer;
-        private bool isBreak;
         public bool isDisappear { get; private set; }
 
         private Timer aliveTimer;
@@ -37,9 +35,7 @@ namespace Season.Utility
             this.name = name;
             this.position = position;
             alpha = 0;
-            //transTimer = new Timer(1f);
             aliveTimer = new Timer(aliveSecond);
-            isBreak = false;
             isDisappear = false;
             imageSize = ResouceManager.GetTextureSize(name);
             rect = new Rectangle(0, 0, (int)imageSize.X, (int)imageSize.Y);
@@ -75,21 +71,9 @@ namespace Season.Utility
 
 
         public void Update() {
-            //transTimer.Update();
             aliveTimer.Update();
-
-            //alpha = isBreak ? transTimer.Rate() : 1 - transTimer.Rate();
             effect.Parameters["Rate"].SetValue(1 - aliveTimer.InterpoRate());
             isDisappear = aliveTimer.IsTime;
-
-            //if (isBreak && transTimer.IsTime) { isDisappear = true; }
-            //if (isBreak) { return; }
-            //if (aliveTimer.IsTime) { GoToDestroy(); }
-        }
-
-        private void GoToDestroy() {
-            //transTimer.Initialize();
-            isBreak = true;
         }
 
     }

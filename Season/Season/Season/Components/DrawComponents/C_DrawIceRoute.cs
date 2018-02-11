@@ -1,49 +1,58 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MyLib.Device;
-using Season.Def;
-using System;
 using MyLib.Utility;
-using Season.Components.NormalComponents;
-using Season.Utility;
 using Season.Components.UpdateComponents;
+using Season.Def;
+using Season.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Season.Components.DrawComponents
 {
-    class C_DrawRouteEffect1 : DrawComponent
+    class C_DrawIceRoute : DrawComponent
     {
         private List<string> imageNames;
         private List<ImageEffect> imageEffects;
 
-        private C_SeasonState seasonState;
-        
         private static Random rand = new Random();
         private Timer creatTimer;
         private int creatNO;
         private float offsetY;
         private int randArea;
         private float aliveSecond;
+        private GraphicsDevice graphicsDevice;
 
-        private bool isSleep;
+        private Vector2 startPosition;
+        private Vector2 endPosition;
 
-        public C_DrawRouteEffect1(float alpha = 1, float depth = 16)
+        public C_DrawIceRoute(Vector2 startPosition, Vector2 endPosition, float alpha = 1, float depth = 16)
         {
             this.alpha = alpha;
             this.depth = depth;
+            this.startPosition = startPosition;
+            this.endPosition = endPosition;
             imageNames = new List<string>();
             imageEffects = new List<ImageEffect>();
 
             creatTimer = new Timer(0.1f);
             creatTimer.Dt = new Timer.timerDelegate(CreatEffectOne);
             creatNO = 0;
+            aliveSecond = Parameter.IceRouteTime;
+
+            graphicsDevice = Renderer_2D.GetGraphicsDevice();
+
+            RegisterImage("P_Ice_", 5);
+            SetState(0.08f, 0, -20);
         }
 
         public void RegisterImage(string imageName, int count) {
             imageNames.Clear();
             if (count == 1) {
                 imageNames.Add(imageName);
-            }
-            else {
+            } else {
                 for (int i = 0; i < count; i++) {
                     imageNames.Add(imageName + i);
                 }
@@ -56,47 +65,49 @@ namespace Season.Components.DrawComponents
             this.offsetY = offsetY;
         }
 
-        public void SetAliveSecond(float aliveSecond) {
-            this.aliveSecond = aliveSecond;
-        }
-
         private void CreatEffectOne() {
-            int nowNo = 0;
+            if (startPosition.X > endPosition.X) { return; }
             if (imageNames.Count > 1) {
-                nowNo = creatNO;
                 creatNO++;
-                if (creatNO >= imageNames.Count) { creatNO -= imageNames.Count; }
+                creatNO = (int)Method.Warp(0, imageNames.Count, creatNO);
             }
 
             float offset = rand.Next(randArea) + offsetY;
-            imageEffects.Add(new ImageEffect(imageNames[nowNo], entity.transform.Position + new Vector2(0, offset), aliveSecond));
+
+            ImageEffect effect = new ImageEffect(imageNames[creatNO], startPosition + new Vector2(0, offset), aliveSecond);
+            imageEffects.Add(effect);
+
+            aliveSecond -= creatTimer.GetLimitTime();
+            startPosition.X += ResouceManager.GetTextureWidth(imageNames[creatNO]) / 2;
+
             imageEffects.RemoveAll(i => i.isDisappear);
         }
 
         private void CreatEffect() {
-            if (isSleep) { return; }
-            if (imageNames.Count == 0) { return; }
-            if (seasonState == null) {
-                seasonState = (C_SeasonState)entity.GetUpdateComponent("C_SeasonState");
-            }
-            if (seasonState.GetNowSeason() == eSeason.Spring) { return; }
-            if (seasonState.GetNowSeason() == eSeason.Autumn) { return; }
-
             creatTimer.Update();
         }
 
-        public void Sleep() { isSleep = true; }
-        public void Awake() { isSleep = false; }
-
-        public override void Draw()
-        {
+        public override void Draw() {
             CreatEffect();
-            Renderer_2D.Begin(Camera2D.GetTransform());
+
+            graphicsDevice.RasterizerState = RasterizerState.CullClockwise;
             imageEffects.ForEach(i => {
                 i.Update();
-                Renderer_2D.DrawTexture(i.name, i.position, i.alpha, i.rect, Vector2.One, 0, i.imageSize / 2);
+
+                Vector2 drawPosition = i.position + Camera2D.GetOffsetPosition();
+                Vector3 drawP3 = new Vector3(drawPosition, 0);
+
+                i.VertexUpdate(drawP3);
+                graphicsDevice.SetVertexBuffer(i.vertexBuffer);
+                foreach (EffectPass pass in i.effect.CurrentTechnique.Passes)
+                {
+                    pass.Apply();
+                    graphicsDevice.DrawUserPrimitives<VertexPositionTexture>(
+                        PrimitiveType.TriangleStrip,
+                        i.vertexPositions, 0, 2
+                    );
+                }
             });
-            Renderer_2D.End();
         }
 
         public override void Active()

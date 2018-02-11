@@ -85,9 +85,9 @@
     <Compile Include="Components\DrawComponents\C_DrawAnimetion.cs" />
     <Compile Include="Components\DrawComponents\C_DrawBezier.cs" />
     <Compile Include="Components\DrawComponents\C_DrawEnergyBar.cs" />
+    <Compile Include="Components\DrawComponents\C_DrawIceRoute.cs" />
     <Compile Include="Components\DrawComponents\C_DrawLine.cs" />
     <Compile Include="Components\DrawComponents\C_DrawRouteEffect.cs" />
-    <Compile Include="Components\DrawComponents\C_DrawRouteEffect1.cs" />
     <Compile Include="Components\DrawComponents\C_DrawLocus.cs" />
     <Compile Include="Components\DrawComponents\C_DrawScrollLayer.cs" />
     <Compile Include="Components\DrawComponents\C_DrawSeasonUI.cs" />
@@ -95,7 +95,6 @@
     <Compile Include="Components\DrawComponents\C_DrawSpriteAutoSize.cs" />
     <Compile Include="Components\DrawComponents\C_DrawSpriteNormal.cs" />
     <Compile Include="Components\DrawComponents\C_DrawDebugMessage.cs" />
-    <Compile Include="Components\DrawComponents\C_DrawTree.cs" />
     <Compile Include="Components\DrawComponents\C_DrawWasteland.cs" />
     <Compile Include="Components\DrawComponents\C_DrawWithShader.cs" />
     <Compile Include="Components\MoveComponent.cs" />
