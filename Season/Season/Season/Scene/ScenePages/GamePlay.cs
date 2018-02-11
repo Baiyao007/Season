@@ -108,33 +108,7 @@ namespace Season.Scene.ScenePages
             //初期化毒沼
             C_UpdateWastelandState wastelandState = new C_UpdateWastelandState(lb);
             wasteland.RegisterComponent(wastelandState);
-
-            //C_WastelandState wastelandState = new C_WastelandState(lb);
-
-            //bezier.SetBezierData(lb[0], lb[1], 0);
-            //bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1]));
-            //wastelandState.startPosition = bezier.GetNowPosition();
-            //wastelandState.SetTargetY(wastelandState.startPosition.Y);
-
-            //bezier.SetBezierData(lb[0], lb[1] + 1, 0);
-            //bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1] + 1));
-            //wastelandState.SetStartY(bezier.GetNowPosition().Y);
-
-            //bezier.SetBezierData(lb[0], lb[1] + 4, 0);
-            //bezier.SetRoute(BezierStage.GetNowRoute(lb[0], lb[1] + 4));
-            //wastelandState.endPosition = bezier.GetNowPosition();
-
-            //wasteland.transform.Position = wastelandState.startPosition;
-
-            //wasteland.RegisterComponent(new C_DrawWasteland(gameDevice, wastelandState));
-
-
-            //Vector2 offset = new Vector2(0, -120);
-            //wasteland.RegisterComponent(new C_Collider_Circle("WastelandStart", offset, 80, eCollitionType.Through, false));
-            //offset.X += (wastelandState.endPosition - wastelandState.startPosition).X;
-            //wasteland.RegisterComponent(new C_Collider_Circle("WastelandEnd", offset, 80, eCollitionType.Through, false));
-
-            //wasteland.RegisterComponent(wastelandState);
+            wasteland.RegisterComponent(new C_DrawWasteland(gameDevice, wastelandState));
         }
         
         /// <summary>

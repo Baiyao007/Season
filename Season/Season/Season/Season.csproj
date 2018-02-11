@@ -118,7 +118,6 @@
     <Compile Include="Components\UpdateComponents\C_SeasonState.cs" />
     <Compile Include="Components\NormalComponents\C_Switch3.cs" />
     <Compile Include="Components\UpdateComponents\C_UpdateWastelandState.cs" />
-    <Compile Include="Components\UpdateComponents\C_WastelandState.cs" />
     <Compile Include="Components\UpdateComponent.cs" />
     <Compile Include="Components\UpdateComponents\C_EntityDeadCheck.cs" />
     <Compile Include="Components\UpdateComponents\C_UpdateBirdState.cs" />
