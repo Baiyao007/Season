@@ -28,6 +28,9 @@ namespace Season.Components.UpdateComponents
 
         private Timer damageTimer;
 
+        public Vector2 startPosition;
+        public Vector2 endPosition;
+
         //RightStop:    
         //LeftStop:    
 
@@ -44,7 +47,6 @@ namespace Season.Components.UpdateComponents
 
             damageTimer = new Timer(2);
         }
-
 
         private void CreatRoute(Vector2 startPosition, Vector2 endPosition) {
             C_IceRoute newRoute = new C_IceRoute(startPosition, endPosition);
@@ -101,15 +103,15 @@ namespace Season.Components.UpdateComponents
             //TODO 更新コンテナに自分を入れる
 
             //DamageAreaの設置
-            Vector2 damageAreaLT = BezierStage.GetControllPointPosition(startPoint_LB[0], startPoint_LB[1] + 1);
-            Vector2 damageAreaRX = BezierStage.GetControllPointPosition(startPoint_LB[0], startPoint_LB[1] + 7);
+            startPosition = BezierStage.GetControllPointPosition(startPoint_LB[0], startPoint_LB[1] + 1);
+            endPosition = BezierStage.GetControllPointPosition(startPoint_LB[0], startPoint_LB[1] + 7);
             Vector2 damageAreaRY = BezierStage.GetControllPointPosition(startPoint_LB[0], startPoint_LB[1] + 4);
 
             Vector2 damageAreaSize = new Vector2(
-                damageAreaRX.X - damageAreaLT.X,
-                damageAreaRY.Y - damageAreaLT.Y);
+                endPosition.X - startPosition.X,
+                damageAreaRY.Y - startPosition.Y);
 
-            damageArea = new C_Collider_PointInHintArea("WastelandDamage", damageAreaLT + damageAreaSize / 2, damageAreaSize);
+            damageArea = new C_Collider_PointInHintArea("WastelandDamage", startPosition + damageAreaSize / 2, damageAreaSize);
             damageArea.Active();
             TaskManager.AddTask(damageArea);
 

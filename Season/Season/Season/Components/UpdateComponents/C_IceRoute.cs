@@ -30,11 +30,6 @@ namespace Season.Components.UpdateComponents
             this.startPosition = startPosition;
             this.endPosition = endPosition;
 
-            draw = new C_DrawIceRoute(startPosition, endPosition);
-
-            childRightStop = new C_Collider_PointInHintArea("childRightStop", startPosition - Vector2.One * 20, new Vector2(60, 40));
-            childLeftStop = new C_Collider_PointInHintArea("childLeftStop", endPosition - new Vector2(40, 20), new Vector2(60, 40));
-
             List<Vector2> route = new List<Vector2>() {
                 startPosition,
                 (startPosition + endPosition) / 2,
@@ -81,11 +76,6 @@ namespace Season.Components.UpdateComponents
 
         public override void Update() {
             aliveTimer.Update();
-
-
-
-
-
         }
 
 
@@ -97,8 +87,17 @@ namespace Season.Components.UpdateComponents
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
+            draw = new C_DrawIceRoute(startPosition, endPosition);
+            childRightStop = new C_Collider_PointInHintArea("childRightStop", startPosition - Vector2.One * 20, new Vector2(60, 40));
+            childLeftStop = new C_Collider_PointInHintArea("childLeftStop", endPosition - new Vector2(40, 20), new Vector2(60, 40));
+
             draw.Active();
+            childRightStop.Active();
+            childLeftStop.Active();
+
             TaskManager.AddTask(draw);
+            TaskManager.AddTask(childRightStop);
+            TaskManager.AddTask(childLeftStop);
         }
 
         public override void DeActive()
