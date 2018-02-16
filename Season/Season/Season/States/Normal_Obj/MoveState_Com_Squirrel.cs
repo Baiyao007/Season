@@ -19,6 +19,7 @@ namespace Season.States
         private C_MoveWithSquirrelAI moveComp;
         private ColliderComponent collider;
         private C_PlayerState playerState;
+        private C_CharaState state;
         private C_EntityDeadCheck deadCheck;
 
         public MoveState_Com_Squirrel(GameDevice gameDevice)
@@ -31,11 +32,12 @@ namespace Season.States
             deadCheck = (C_EntityDeadCheck)entity.GetUpdateComponent("C_EntityDeadCheck");
             moveComp = (C_MoveWithSquirrelAI)entity.GetUpdateComponent("C_MoveWithSquirrelAI");
             playerState = (C_PlayerState)EntityManager.FindWithName("Player")[0].GetNormalComponent("C_PlayerState");
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
         }
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState)
         {
-            if (moveComp.GetIsJump())
+            if (state.IsJump)
             {
                 Console.WriteLine("Child Fall");
                 entity.RemoveComponent(moveComp);

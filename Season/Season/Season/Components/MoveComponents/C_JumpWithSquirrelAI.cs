@@ -14,8 +14,8 @@ namespace Season.Components.MoveComponents
         private float currentJumpPower;
         private C_Switch3 childDirection;
         private C_BezierPoint bezierPoint;
+        private C_CharaState state;
         private Entity player;
-        private bool isLand;
 
         public C_JumpWithSquirrelAI(float speed, bool isJump = true)
             : base(speed, Vector2.Zero)
@@ -28,14 +28,13 @@ namespace Season.Components.MoveComponents
             else {
                 currentJumpPower = 0;
             }
-            isLand = false;
         }
 
         protected override void UpdateMove()
         {
             base.UpdateMove();
 
-            if (isLand) { return; }
+            if (state.IsLand) { return; }
             Jump();
         }
 
@@ -48,7 +47,7 @@ namespace Season.Components.MoveComponents
             player = EntityManager.FindWithTag("Player")[0];
             childDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
             bezierPoint = (C_BezierPoint)entity.GetNormalComponent("C_BezierPoint");
-
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
 
             if (childDirection.IsRight()) { entity.transform.Angle = 330; }
             else if (childDirection.IsLeft()) { entity.transform.Angle = 210; }
@@ -143,17 +142,12 @@ namespace Season.Components.MoveComponents
                     entity.transform.Position.Y <= testPosition.Y + 5
                     )
                 {
-                    isLand = true;
+                    state.IsLand = true;
                     break;
                 }
             }
             entity.transform.Position += new Vector2(0, currentJumpPower);
             currentJumpPower += powercut;
-        }
-
-        public bool GetIsLand()
-        {
-            return isLand;
         }
 
     }

@@ -30,6 +30,7 @@ namespace Season.States
 
         private ColliderComponent collider;
         private C_SeasonState seasonState;
+        private C_CharaState state;
         private C_Energy energy;
 
         public MoveState_Com_Player(GameDevice gameDevice, float nowSpeed) {
@@ -48,6 +49,8 @@ namespace Season.States
 
             seasonState = (C_SeasonState)entity.GetUpdateComponent("C_SeasonState");
             energy = (C_Energy)entity.GetNormalComponent("C_Energy");
+
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
         }
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState) {
@@ -60,8 +63,9 @@ namespace Season.States
                 return eStateTrans.ToNext;
             }
 
+            //moveComp.GetIsFall()
             //落下に遷移
-            if (moveComp.GetIsFall()) {
+            if (state.IsJump) { 
                 routeEffect.Sleep();
                 float nowSpeed = moveComp.speed;
                 entity.RemoveComponent(moveComp);
@@ -127,7 +131,7 @@ namespace Season.States
 
         private bool JumpDownCheck(Entity entity) {
             if (!IsColliderValid(entity)) { return false; }
-            if (collider.IsThrough("JumpDown") &&     //BezierStage.GetIndexList(entity.transform.Position).Count > 1
+            if (collider.IsThrough("JumpDown") && 
                 inputState.IsDown(Keys.Down, Buttons.DPadDown))
             {
                 return true;

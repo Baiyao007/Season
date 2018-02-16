@@ -22,7 +22,8 @@ namespace Season.Components.MoveComponents
         private C_Switch3 playerDirection;
         private C_BezierPoint bezierPoint;
         private C_DrawAnimetion animControl;
-        private bool isFall;
+        private C_CharaState state;
+        //private bool isFall;
         private float speedSwith;
         private int isWallDirection;
         private bool isWall;
@@ -34,7 +35,7 @@ namespace Season.Components.MoveComponents
         {
             this.inputState = inputState;
             startSpeed = speed;
-            isFall = false;
+            //isFall = false;
             speedSwith = startSpeed * 0.95f;
             isWall = false;
             isWallDirection = 0;
@@ -47,6 +48,7 @@ namespace Season.Components.MoveComponents
 
             playerDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
             bezierPoint = (C_BezierPoint)entity.GetNormalComponent("C_BezierPoint");
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
             animControl = (C_DrawAnimetion)entity.GetDrawComponent("C_DrawAnimetion");
         }
 
@@ -58,7 +60,8 @@ namespace Season.Components.MoveComponents
 
         protected override void UpdateMove()
         {
-            if (isFall) { return; }
+            //if (isFall) { return; }
+            if (state.IsJump) { return; }
             base.UpdateMove();
 
             CheckSpeed();
@@ -112,7 +115,7 @@ namespace Season.Components.MoveComponents
             else { bezierPoint.ToLeft((int)speed); }
 
             if (bezierPoint.IsEnd()) {
-                isFall = true;
+                state.IsJump = true;
                 return;
             }
             bezierPoint.Rotate();
@@ -154,6 +157,6 @@ namespace Season.Components.MoveComponents
             return false;
         }
 
-        public bool GetIsFall() { return isFall; }
+        //public bool GetIsFall() { return isFall; }
     }
 }

@@ -25,9 +25,9 @@ namespace Season.Components.MoveComponents
         private float currentJumpPower;
         private C_Switch3 playerDirection;
         private C_BezierPoint bezierPoint;
+        private C_CharaState state;
 
         private C_DrawAnimetion animControl;
-        private bool isLand;
         private int isWallDirection;
         private bool isWall;
 
@@ -38,26 +38,29 @@ namespace Season.Components.MoveComponents
         {
             this.inputState = inputState;
             startSpeed = speed;
-            currentJumpPower += (int)jumpType;
-            isLand = false;
+            currentJumpPower = (int)jumpType;
             isWall = false;
             isWallDirection = 0;
         }
 
         protected override void UpdateMove() {
             base.UpdateMove();
-            if (isLand) { return; }
+            if (state.IsLand) {
+                currentJumpPower = 0;
+                return;
+            }
             Jump();
         }
 
 
-        public override void Active()
-        {
+        public override void Active() {
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
             playerDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
             bezierPoint = (C_BezierPoint)entity.GetNormalComponent("C_BezierPoint");
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
+            state.IsJump = true;
 
             animControl = (C_DrawAnimetion)entity.GetDrawComponent("C_DrawAnimetion");
             animControl.SetNowAnim("Jump");
@@ -66,11 +69,10 @@ namespace Season.Components.MoveComponents
             else if (playerDirection.IsLeft()) { entity.transform.Angle = 210; }
             else if (playerDirection.IsNone()) { entity.transform.Angle = 360; }
 
-            entity.transform.SetPositionY = entity.transform.Position.Y + currentJumpPower;
+            entity.transform.SetPositionY += currentJumpPower;
         }
 
-        public override void DeActive()
-        {
+        public override void DeActive() {
             base.DeActive();
             //TODO 更新コンテナから自分を削除
         }
@@ -201,16 +203,14 @@ namespace Season.Components.MoveComponents
                 if (entity.transform.Position.Y >= testPosition.Y - 10 &&
                     entity.transform.Position.Y <= testPosition.Y + 5)
                 {
-                    isLand = true;
-                    animControl.SetNowAnim("Run");
+                    state.IsLand = true;
+                    animControl.SetNowAnim("Run"); 
                     break;
                 }
             }
             entity.transform.Position += new Vector2(0, currentJumpPower);
             currentJumpPower += powercut;
         }
-
-        public bool GetIsLand() { return isLand; }
 
     }
 
