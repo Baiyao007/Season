@@ -16,12 +16,12 @@ namespace Season.States.Normal_Obj
         private C_EntityDeadCheck deadCheck;
         private ColliderComponent collider;
         private C_Energy energy;
+        private C_CharaState state;
 
         public JumpState_Com_Player(GameDevice gameDevice, eJumpType jumpType, float nowSpeed)
         {
             this.gameDevice = gameDevice;
             inputState = gameDevice.GetInputState;
-
             jumpComp = new C_JumpWithController(Parameter.PlayerLimitSpeed, inputState, jumpType);
             jumpComp.speed = nowSpeed;
         }
@@ -30,14 +30,13 @@ namespace Season.States.Normal_Obj
         {
             deadCheck = (C_EntityDeadCheck)entity.GetUpdateComponent("C_EntityDeadCheck");
             energy = (C_Energy)entity.GetNormalComponent("C_Energy");
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
             entity.RegisterComponent(jumpComp);
         }
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState)
         {
-            if (jumpComp.GetIsLand())
-            {
-                System.Console.WriteLine("Landed");
+            if (state.IsLand) {
                 float nowSpeed = jumpComp.speed;
                 entity.RemoveComponent(jumpComp);
                 nextState = new MoveState_Com_Player(gameDevice, nowSpeed); 

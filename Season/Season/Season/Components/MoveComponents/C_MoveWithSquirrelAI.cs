@@ -15,11 +15,11 @@ namespace Season.Components.MoveComponents
         private C_Switch3 childDirection;
         private C_BezierPoint bezierPoint;
         private C_ChildState childState;
+        private C_CharaState state;
         private ColliderComponent collider;
         private Entity player;
         private C_Energy energy;
         private C_DrawAnimetion draw;
-        private bool isJump;
         private float restExpend;
         private float moveExpend;
         private bool isCaught;
@@ -28,7 +28,6 @@ namespace Season.Components.MoveComponents
             : base(speed, Vector2.Zero)
         {
             startSpeed = speed;
-            isJump = false;
             isCaught = false;
         }
 
@@ -38,6 +37,7 @@ namespace Season.Components.MoveComponents
 
             player = EntityManager.FindWithTag("Player")[0];
             childDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
             bezierPoint = (C_BezierPoint)entity.GetNormalComponent("C_BezierPoint");
             childState = (C_ChildState)entity.GetNormalComponent("C_ChildState");
             energy = (C_Energy)entity.GetNormalComponent("C_Energy");
@@ -58,8 +58,8 @@ namespace Season.Components.MoveComponents
         }
 
         protected override void UpdateMove() {
-            if (collider.IsThrough("ChildJump")) { isJump = true; }
-            if (isJump) { return; }
+            if (collider.IsThrough("ChildJump")) { state.IsJump = true; }
+            if (state.IsJump) { return; }
             isCaught = childState.IsBeCaught();
             if (isCaught) {
                 Entity enemy = childState.GetEnemyCaughtMe();
@@ -139,14 +139,12 @@ namespace Season.Components.MoveComponents
             else { bezierPoint.ToLeft((int)speed); }
 
             if (bezierPoint.IsEnd()) {
-                isJump = true;
+                state.IsJump = true;
                 return true;
             }
             bezierPoint.Rotate();
             return false;
         }
-
-        public bool GetIsJump() { return isJump; }
 
     }
 }

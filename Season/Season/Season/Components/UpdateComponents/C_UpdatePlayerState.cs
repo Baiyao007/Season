@@ -57,9 +57,6 @@ namespace Season.Components.UpdateComponents
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
-            UpdateComponent fallComp = new C_JumpWithController(Parameter.PlayerLimitSpeed, inputState, eJumpType.Fall);
-            entity.RegisterComponent(fallComp);
-
             seasonState = new C_SeasonState();
             entity.RegisterComponent(seasonState);
             entity.RegisterComponent(new C_DrawSeasonUI(seasonState));

@@ -2,20 +2,12 @@
 using MyLib.Utility;
 using Season.Components;
 using Season.Components.ColliderComponents;
-using Season.Components.DrawComponents;
 using Season.Components.NormalComponents;
 using Season.Entitys;
-using System;
 using System.Collections.Generic;
 
 namespace Season.Utility
 {
-    static class Extensions
-    {
-
-
-    }
-
 
     static class BezierStage
     {

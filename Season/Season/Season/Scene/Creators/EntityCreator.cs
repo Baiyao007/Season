@@ -53,6 +53,7 @@ namespace Season.Scene.Creators
 
             //機能登録(順序注意 - 関連性ある)
             player.RegisterComponent(new C_Switch3());
+            player.RegisterComponent(new C_CharaState());
             C_BezierPoint bezier = new C_BezierPoint();
             player.RegisterComponent(bezier);
             player.RegisterComponent(new C_EntityDeadCheck());
@@ -163,6 +164,7 @@ namespace Season.Scene.Creators
             Entity child = Entity.CreateEntity("Squirrel", "Child", trans);
 
             child.RegisterComponent(new C_Switch3());
+            child.RegisterComponent(new C_CharaState());
             child.RegisterComponent(new C_ChildState());
             C_BezierPoint bezier = new C_BezierPoint();
             child.RegisterComponent(bezier);

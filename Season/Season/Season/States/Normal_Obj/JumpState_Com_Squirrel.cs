@@ -1,6 +1,7 @@
 ﻿using MyLib.Device;
 using Season.Components;
 using Season.Components.MoveComponents;
+using Season.Components.NormalComponents;
 using Season.Components.UpdateComponents;
 using Season.Def;
 using Season.Entitys;
@@ -16,6 +17,7 @@ namespace Season.States.Normal_Obj
         private GameDevice gameDevice;
         private C_JumpWithSquirrelAI jumpComp;
         private C_EntityDeadCheck deadCheck;
+        private C_CharaState state;
 
         public JumpState_Com_Squirrel(GameDevice gameDevice)
         {
@@ -26,11 +28,12 @@ namespace Season.States.Normal_Obj
         {
             jumpComp = (C_JumpWithSquirrelAI)entity.GetUpdateComponent("C_JumpWithSquirrelAI");
             deadCheck = (C_EntityDeadCheck)entity.GetUpdateComponent("C_EntityDeadCheck");
+            state = (C_CharaState)entity.GetNormalComponent("C_CharaState");
         }
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState)
         {
-            if (jumpComp.GetIsLand())
+            if (state.IsLand)
             {
                 UpdateComponent moveComp = new C_MoveWithSquirrelAI(Parameter.PlayerLimitSpeed);
                 entity.RemoveComponent(jumpComp);
