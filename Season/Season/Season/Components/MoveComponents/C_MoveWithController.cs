@@ -23,7 +23,6 @@ namespace Season.Components.MoveComponents
         private C_BezierPoint bezierPoint;
         private C_DrawAnimetion animControl;
         private C_CharaState state;
-        //private bool isFall;
         private float speedSwith;
         private int isWallDirection;
         private bool isWall;
@@ -35,7 +34,6 @@ namespace Season.Components.MoveComponents
         {
             this.inputState = inputState;
             startSpeed = speed;
-            //isFall = false;
             speedSwith = startSpeed * 0.95f;
             isWall = false;
             isWallDirection = 0;
@@ -60,7 +58,6 @@ namespace Season.Components.MoveComponents
 
         protected override void UpdateMove()
         {
-            //if (isFall) { return; }
             if (state.IsJump) { return; }
             base.UpdateMove();
 
@@ -156,7 +153,5 @@ namespace Season.Components.MoveComponents
             }
             return false;
         }
-
-        //public bool GetIsFall() { return isFall; }
     }
 }

@@ -63,7 +63,6 @@ namespace Season.States
                 return eStateTrans.ToNext;
             }
 
-            //moveComp.GetIsFall()
             //落下に遷移
             if (state.IsJump) { 
                 routeEffect.Sleep();
@@ -141,6 +140,7 @@ namespace Season.States
 
 
         private bool CollitionCheck(Entity entity) {
+            if (energy.IsDead()) { return true; }
             if (!IsColliderValid(entity)) { return false; }
             if (collider.IsThrough("Boar")) { 
                 return true;
