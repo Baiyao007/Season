@@ -65,11 +65,10 @@ namespace Season.States
             if (playerState.IsHidden) { return false; }
             collider = entity.GetColliderComponent("Squirrel");
             if (collider == null) { return false; }
-            if (collider.IsThrough("Boar")) { 
+            if (collider.IsThrough("Boar") || collider.IsThrough("WastelandDamage")) { 
                 entity.RemoveComponent(moveComp);
                 collider.DeActive();
                 return true;
-
             }
             return false;
         }

@@ -36,8 +36,6 @@ namespace Season.Utility
                     if (bezierDatas[i].LineIndex == index) {
                         C_CharaState state = (C_CharaState)bezierDatas[i].GetEntity().GetNormalComponent("C_CharaState");
                         state.IsJump = true;
-                        bezierDatas.RemoveAt(i);
-                        i--;
                     }
                 }
                 else {

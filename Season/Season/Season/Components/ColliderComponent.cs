@@ -120,6 +120,8 @@ namespace Season.Components
             awakeTimer = new Timer(second);
         }
 
+        public void Awake() { isSleep = false; }
+
         public void Destroy(float second) { distroyTimer = new Timer(second); }
 
         public virtual void Update() {

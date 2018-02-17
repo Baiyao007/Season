@@ -44,17 +44,19 @@ namespace Season.Components.UpdateComponents
             canMoveLeft = false;
         }
 
+        public float GetStartX() { return startPosition.X; }
+        public float GetEndX() { return endPosition.X; }
+
         public bool CanMoveRight {
             get { return canMoveRight; }
             set {
                 if (canMoveRight == value) { return; }
                 canMoveRight = value;
                 if (canMoveRight) {
-                    childRightStop.DeActive();
-                    childRightStop = null;
+                    childRightStop.SetSleep();
                 }
                 else {
-                    childRightStop = new C_Collider_PointInHintArea("childRightStop", startPosition - Vector2.One * 20, new Vector2(60, 40));
+                    childRightStop.Awake();
                 }
             }
         }
@@ -65,11 +67,10 @@ namespace Season.Components.UpdateComponents
                 if (canMoveLeft == value) { return; }
                 canMoveLeft = value;
                 if (canMoveLeft) {
-                    childLeftStop.DeActive();
-                    childLeftStop = null;
+                    childLeftStop.SetSleep();
                 }
                 else {
-                    childLeftStop = new C_Collider_PointInHintArea("childLeftStop", endPosition - new Vector2(40, 20), new Vector2(60, 40));
+                    childLeftStop.Awake();
                 }
             }
         }
@@ -78,18 +79,14 @@ namespace Season.Components.UpdateComponents
             aliveTimer.Update();
         }
 
-
-        public Vector2 GetStartPositon() { return startPosition; }
-        public Vector2 GetEndPositon() { return endPosition; }
-
         public override void Active()
         {
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
             draw = new C_DrawIceRoute(startPosition, endPosition);
-            childRightStop = new C_Collider_PointInHintArea("childRightStop", startPosition - Vector2.One * 20, new Vector2(60, 40));
-            childLeftStop = new C_Collider_PointInHintArea("childLeftStop", endPosition - new Vector2(40, 20), new Vector2(60, 40));
+            childRightStop = new C_Collider_PointInHintArea("childRightStop", endPosition - Vector2.One * 20, Vector2.One * 100);
+            childLeftStop = new C_Collider_PointInHintArea("childLeftStop", startPosition - new Vector2(-20, 20), Vector2.One * 100);
 
             draw.Active();
             childRightStop.Active();
@@ -105,6 +102,8 @@ namespace Season.Components.UpdateComponents
             base.DeActive();
             //TODO 更新コンテナから自分を削除
             BezierStage.DeleteRoute(bezierIndex);
+            childRightStop.DeActive();
+            childLeftStop.DeActive();
         }
 
 

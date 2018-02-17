@@ -19,6 +19,9 @@ namespace Season.Components.UpdateComponents
         private C_Collider_PointInHintArea damageArea;
         private C_Collider_Square createRouteArea;
 
+        private C_Collider_PointInHintArea stopRight;
+        private C_Collider_PointInHintArea stopLeft;
+
         private int[] startPoint_LB;
         private int[] endPoint_LB;
         private int[] centrePoint_Lb;
@@ -56,20 +59,16 @@ namespace Season.Components.UpdateComponents
         }
 
         public override void Update() {
-            if (damageArea.IsThrough("Player")) {
-                damageTimer.Update();
-                if (damageTimer.IsTime) {
-                    Entity player = damageArea.GetOtherEntity("Player");
-                    ((C_Energy)player.GetNormalComponent("C_Energy")).Damage(1);
-                    damageTimer.Initialize();
-                }
-            }
-            if (damageArea.ThroughEnd("Player")) {
-                damageTimer.Initialize();
-            }
+            routes.RemoveAll(r => !r.IsAtive);
+            CheckCanMove();
+            CheckDamage();
+            CreatRoute();
+        }
 
-
+        private void CreatRoute() {
             if (createRouteArea.ThroughEnd("PlayerSkill")) {
+                C_SeasonState season = (C_SeasonState)createRouteArea.GetOtherEntity("PlayerSkill").GetUpdateComponent("C_SeasonState");
+                if (season.GetNowSeason() != eSeason.Winter) { return; }
                 C_Collider_Circle playerSkillCollider = (C_Collider_Circle)createRouteArea.GetOtherCollider("PlayerSkill");
                 Vector2 colliderCentre = playerSkillCollider.centerPosition;
                 float radius = playerSkillCollider.radius;
@@ -91,6 +90,52 @@ namespace Season.Components.UpdateComponents
                 //射線あたり判定からルート生成の始点と終点をゲット
                 if (crossPoint1 == crossPoint2) { return; }
                 CreatRoute(crossPoint1, crossPoint2);
+            }
+        }
+
+        private void CheckCanMove() {
+            canMoveRight = false;
+            canMoveLeft = false;
+
+            if (routes.Count > 0) {
+                routes.ForEach(r => {
+                    if (r.GetStartX() - startPosition.X < 50) {
+                        canMoveRight = true;
+                    }
+                    if (endPosition.X - r.GetEndX() < 50) {
+                        canMoveLeft = true;
+                    }
+                });
+            }
+
+            if (canMoveRight) {
+                stopRight.SetSleep();
+            }
+            else {
+                stopRight.Awake();
+            }
+
+            if (canMoveLeft) {
+                stopLeft.SetSleep();
+            }
+            else {
+                stopLeft.Awake();
+            }
+
+        }
+
+        private void CheckDamage() {
+            if (damageArea.IsThrough("Player")) {
+                damageTimer.Update();
+                if (damageTimer.IsTime)
+                {
+                    Entity player = damageArea.GetOtherEntity("Player");
+                    ((C_Energy)player.GetNormalComponent("C_Energy")).Damage(1);
+                    damageTimer.Initialize();
+                }
+            }
+            if (damageArea.ThroughEnd("Player")) {
+                damageTimer.Initialize();
             }
         }
 
@@ -124,6 +169,22 @@ namespace Season.Components.UpdateComponents
             createRouteArea = new C_Collider_Square("CanCreateRoute", createRouteAreaLT + createRouteAreaSize / 2, createRouteAreaSize);
             createRouteArea.Active();
             TaskManager.AddTask(createRouteArea);
+
+
+            //ChildControll用エリア設置
+            C_Collider_PointInHintArea childJump1 = new C_Collider_PointInHintArea("ChildJump", startPosition,Vector2.One * 60);
+            C_Collider_PointInHintArea childJump2 = new C_Collider_PointInHintArea("ChildJump", endPosition, Vector2.One * 60);
+            childJump1.Active();
+            childJump2.Active();
+            TaskManager.AddTask(childJump1);
+            TaskManager.AddTask(childJump2);
+
+            stopRight = new C_Collider_PointInHintArea("ChildStopR", startPosition, Vector2.One * 100);
+            stopLeft = new C_Collider_PointInHintArea("ChildStopL", endPosition, Vector2.One * 100);
+            stopRight.Active();
+            stopLeft.Active();
+            TaskManager.AddTask(stopRight);
+            TaskManager.AddTask(stopLeft);
         }
 
         public override void DeActive() {
