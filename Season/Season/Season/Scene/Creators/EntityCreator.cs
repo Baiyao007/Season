@@ -56,6 +56,7 @@ namespace Season.Scene.Creators
             player.RegisterComponent(new C_CharaState());
             C_BezierPoint bezier = new C_BezierPoint();
             player.RegisterComponent(bezier);
+            BezierStage.AddBezierData(bezier);
             player.RegisterComponent(new C_EntityDeadCheck());
             player.RegisterComponent(new C_PlayerState());
             player.RegisterComponent(new C_DrawRouteEffect());
@@ -168,6 +169,7 @@ namespace Season.Scene.Creators
             child.RegisterComponent(new C_ChildState());
             C_BezierPoint bezier = new C_BezierPoint();
             child.RegisterComponent(bezier);
+            BezierStage.AddBezierData(bezier);
             //child.RegisterComponent(new C_DrawDebugMessage(bezier));
             child.RegisterComponent(new C_EntityDeadCheck());
             child.RegisterComponent(new C_Energy("", 10, 90));

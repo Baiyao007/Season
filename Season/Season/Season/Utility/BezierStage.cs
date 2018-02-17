@@ -13,7 +13,12 @@ namespace Season.Utility
     {
         static private List<List<Vector2>> controllPoints = new List<List<Vector2>>();
         static private List<List<Vector2>> blockMapList = new List<List<Vector2>>();
+        static private List<C_BezierPoint> bezierDatas = new List<C_BezierPoint>();
         static bool isEnd = false;
+
+        public static void AddBezierData(C_BezierPoint bezierData) {
+            bezierDatas.Add(bezierData);
+        }
 
         public static int AddRoute(List<Vector2> route) {
             controllPoints.Add(route);
@@ -25,6 +30,21 @@ namespace Season.Utility
             for (int i = index + 1; i < controllPoints.Count; i++) {
                 controllPoints[i - 1] = controllPoints[i];
             }
+
+            for (int i = 0; i < bezierDatas.Count; i++) {
+                if (bezierDatas[i].IsAtive) {
+                    if (bezierDatas[i].LineIndex == index) {
+                        C_CharaState state = (C_CharaState)bezierDatas[i].GetEntity().GetNormalComponent("C_CharaState");
+                        state.IsJump = true;
+                        bezierDatas.RemoveAt(i);
+                        i--;
+                    }
+                }
+                else {
+                    bezierDatas.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         public static Vector2 GetControllPointPosition(int l, int b) {
@@ -34,6 +54,7 @@ namespace Season.Utility
         public static void InitializeStage(int stageNo) {
             controllPoints.Clear();
             blockMapList.Clear();
+            bezierDatas.Clear();
             CSVReader.Read("PointData_S" + stageNo);
             int[,] result = CSVReader.GetIntMatrix();
           
