@@ -332,7 +332,7 @@ namespace StageCreatorForSeason.Objects
             //前のグループを選択
             else if (mouse.WasScrollWheelMinus()) {
                 bezierIndex--;
-                bezierIndex = (int)Methord.MinClamp(bezierIndex, 0);
+                bezierIndex = (int)Method.MinClamp(bezierIndex, 0);
             }
 
         }

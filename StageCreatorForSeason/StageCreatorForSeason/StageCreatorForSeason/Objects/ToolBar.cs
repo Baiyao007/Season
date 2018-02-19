@@ -24,13 +24,13 @@ namespace StageCreatorForSeason.Objects
 
         public void ToNext() {
             pageNo++;
-            Methord.Warp(0, 1, ref pageNo);
+            Method.Warp(0, 1, ref pageNo);
             SetNowTool((int)nowType % 10);
         }
 
         public void ToBefore() {
             pageNo--;
-            Methord.Warp(0, 1, ref pageNo);
+            Method.Warp(0, 1, ref pageNo);
             SetNowTool((int)nowType % 10);
         }
 

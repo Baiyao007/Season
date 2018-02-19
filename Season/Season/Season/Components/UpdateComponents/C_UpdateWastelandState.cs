@@ -34,10 +34,6 @@ namespace Season.Components.UpdateComponents
         public Vector2 startPosition;
         public Vector2 endPosition;
 
-        //RightStop:    
-        //LeftStop:    
-
-
 
         public C_UpdateWastelandState(List<int> lb) {
             routes = new List<C_IceRoute>();
@@ -81,8 +77,6 @@ namespace Season.Components.UpdateComponents
                 Vector2 crossPoint2 = lt;
 
                 Method.Circle_Ray(ref colliderCentre, lt, rayNormal, radius, ref crossPoint1, ref crossPoint2);
-
-                //F,9482,759 ,9499,1079 ,948,437
 
                 crossPoint1 = crossPoint1.X > rb.X ? rb : crossPoint1;
                 crossPoint2 = crossPoint2.X > rb.X ? rb : crossPoint2;

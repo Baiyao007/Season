@@ -66,6 +66,16 @@ namespace MyLib.Device
         }
 
         /// <summary>
+        /// 2D画像の削除
+        /// </summary>
+        /// <param name="name">アセット名</param>
+        public static void DeleteTextures(string name) {
+            if (textures.ContainsKey(name)) { return; }
+            textures[name].Dispose();
+            textures.Remove(name);
+        }
+
+        /// <summary>
         /// エフェクトの読込　by柏　2017.02.21
         /// </summary>
         /// <param name="name">エフェクトのアセット名</param>

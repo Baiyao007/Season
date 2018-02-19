@@ -110,6 +110,7 @@
     <Compile Include="Components\MoveComponents\C_MoveWithController.cs" />
     <Compile Include="Components\NormalComponents\C_BezierPoint.cs" />
     <Compile Include="Components\NormalComponents\C_CharaState.cs" />
+    <Compile Include="Components\NormalComponents\C_CheckPoint.cs" />
     <Compile Include="Components\NormalComponents\C_ChildState.cs" />
     <Compile Include="Components\NormalComponents\C_EnemyState.cs" />
     <Compile Include="Components\NormalComponents\C_Energy.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Components\UpdateComponents\C_Hint.cs" />
     <Compile Include="Components\UpdateComponents\C_SeasonState.cs" />
     <Compile Include="Components\NormalComponents\C_Switch3.cs" />
+    <Compile Include="Components\UpdateComponents\C_StageLoader.cs" />
     <Compile Include="Components\UpdateComponents\C_UpdateWastelandState.cs" />
     <Compile Include="Components\UpdateComponent.cs" />
     <Compile Include="Components\UpdateComponents\C_EntityDeadCheck.cs" />
