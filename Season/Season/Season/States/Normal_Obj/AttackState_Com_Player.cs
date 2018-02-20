@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MyLib.Device;
 using MyLib.Utility;
 using Season.Components;
@@ -21,6 +22,7 @@ namespace Season.States.Normal_Obj
         private InputState inputState;
         private C_DrawAnimetion playerAnim;
         private C_Switch3 playerDirection;
+        private ColliderComponent attackCollider;
         private Timer attackTimer;
         private float attackTime;
 
@@ -32,39 +34,42 @@ namespace Season.States.Normal_Obj
             attackTimer = new Timer(attackTime);
         }
 
-        protected override void Initialize(Entity entity) { }
+        protected override void Initialize(Entity entity) {
+            playerAnim = (C_DrawAnimetion)entity.GetDrawComponent("C_DrawAnimetion");
+            playerDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
+
+            Vector2 offset = Vector2.Zero;
+
+            if (playerDirection.IsRight()) {
+                offset = new Vector2(100, -110);
+            }
+            else if (playerDirection.IsLeft()) {
+                offset = new Vector2(-100, -110);
+            }
+            attackCollider = new C_Collider_Circle("PlayerAttack", offset, 50);
+            entity.RegisterComponent(attackCollider);
+        }
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState)
         {
-            if (playerAnim == null) {
-                playerAnim = (C_DrawAnimetion)entity.GetDrawComponent("C_DrawAnimetion");
+            if (inputState.IsDown(Keys.F)) {
+                attackTimer.Update();
                 playerAnim.SetNowAnim("Attack");
 
-                playerDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
-
-                if (playerDirection.IsRight()) {
-                    ColliderComponent attackCollider = new C_Collider_Circle("PlayerAttack", new Vector2( 100, -110), 50);
-                    entity.RegisterComponent(attackCollider);
-                    attackCollider.Destroy(attackTime);
+                if (attackTimer.IsTime) {
+                    attackCollider.Destroy(0);
+                    playerAnim.SetNowAnim("Idle");
+                    nextState = new MoveState_Com_Player(gameDevice, 0);
+                    return eStateTrans.ToNext;
                 }
-                else if (playerDirection.IsLeft()) {
-                    ColliderComponent attackCollider = new C_Collider_Circle("PlayerAttack", new Vector2(-100, -110), 50);
-                    entity.RegisterComponent(attackCollider);
-                    attackCollider.Destroy(attackTime);
-                }
-
+                nextState = this;
+                return eStateTrans.ToThis;
             }
-            attackTimer.Update();
-
-
-            if (attackTimer.IsTime)
-            {
+            else {
+                attackCollider.Destroy(0);
                 nextState = new MoveState_Com_Player(gameDevice, 0);
                 return eStateTrans.ToNext;
             }
-
-            nextState = this;
-            return eStateTrans.ToThis;
         }
 
         protected override void ExitAction(Entity entity) { }

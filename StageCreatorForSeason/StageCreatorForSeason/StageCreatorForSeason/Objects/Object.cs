@@ -14,6 +14,7 @@ namespace StageCreatorForSeason.Objects
         Eagle,
         Shrub,
         Squirrel,
+        Wasteland,
         F = 10,
         X,
         Z,
