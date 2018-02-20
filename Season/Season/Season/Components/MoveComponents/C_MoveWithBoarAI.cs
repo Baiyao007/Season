@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MyLib.Utility;
 using Season.Components.NormalComponents;
 using Season.Entitys;
 using System;
@@ -16,6 +17,9 @@ namespace Season.Components.MoveComponents
         private Entity player;
         private bool isFall;
         private bool isEscape;
+        private bool isPatrol;
+        private Timer patrolTimer;
+        private bool isRight;
 
         public C_MoveWithBoarAI(float speed)
             : base(speed, Vector2.Zero)
@@ -23,6 +27,10 @@ namespace Season.Components.MoveComponents
             startSpeed = speed;
             isFall = false;
             isEscape = false;
+            isPatrol = true;
+            isRight = true;
+            patrolTimer = new Timer(3);
+            patrolTimer.Dt = new Timer.timerDelegate(Patrol);
         }
 
         public void SetEscape() { isEscape = true; }
@@ -32,9 +40,10 @@ namespace Season.Components.MoveComponents
             base.Active();
             //TODO 更新コンテナに自分を入れる
 
-            player = EntityManager.FindWithTag("Player")[0];
             childDirection = (C_Switch3)entity.GetNormalComponent("C_Switch3");
             bezierPoint = (C_BezierPoint)entity.GetNormalComponent("C_BezierPoint");
+
+            childDirection.SetRight(false);
 
             if (childDirection.IsRight()) { entity.transform.Angle = 360; }
             else if (childDirection.IsLeft()) { entity.transform.Angle = 180; }
@@ -52,33 +61,46 @@ namespace Season.Components.MoveComponents
             if (isFall) { return; }
             base.UpdateMove();
 
+            player = EntityManager.FindWithTag("Player")[0];
             CheckDirection();
+            patrolTimer.Update();
             Move();
         }
 
         private void CheckDirection()
         {
             if (isEscape) { return; }
+            ActionCheck();
+        }
 
-            //speed *= 0.98f;
-            //if (speed <= 0.01f) { speed = 0; }
-
-            if (player.transform.Position.X > entity.transform.Position.X + 20 &&
+        private void ActionCheck() {
+            if (player.transform.Position.X > entity.transform.Position.X + 50 &&
                 Vector2.DistanceSquared(player.transform.Position, entity.transform.Position) < 800 * 800)
             {
                 childDirection.SetRight(false);
                 speed = startSpeed;
+                isPatrol = false;
             }
-            else if (player.transform.Position.X < entity.transform.Position.X - 20 &&
+            else if (player.transform.Position.X < entity.transform.Position.X - 50 &&
                 Vector2.DistanceSquared(player.transform.Position, entity.transform.Position) < 800 * 800)
             {
                 childDirection.SetLeft(false);
                 speed = startSpeed;
+                isPatrol = false;
             }
             else {
-                childDirection.SetNone();
+                //childDirection.SetNone();
+                isPatrol = true;
             }
         }
+
+        private void Patrol() {
+            if (!isPatrol) { return; }
+            isRight = !isRight;
+            if (isRight) { childDirection.SetRight(false); }
+            else { childDirection.SetLeft(false); }
+        }
+
 
         private void Move() {
             if (childDirection.IsNone()) { }

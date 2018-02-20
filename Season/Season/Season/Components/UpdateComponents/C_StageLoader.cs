@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MyLib.Device;
+using Season.Components.DrawComponents;
 using Season.Components.NormalComponents;
 using Season.Def;
 using System;
@@ -39,6 +40,11 @@ namespace Season.Components.UpdateComponents
             if (this.pointNo == pointNo) { return; }
             pointNoBefore = this.pointNo;
             this.pointNo = pointNo;
+
+            C_DrawStringTemporary message = new C_DrawStringTemporary("Saving...", 2);
+            message.Active();
+            TaskManager.AddTask(message);
+
             UpdateResource();
         }
 

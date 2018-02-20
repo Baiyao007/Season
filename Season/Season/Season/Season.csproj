@@ -92,6 +92,7 @@
     <Compile Include="Components\DrawComponents\C_DrawScrollLayer.cs" />
     <Compile Include="Components\DrawComponents\C_DrawSeasonUI.cs" />
     <Compile Include="Components\DrawComponents\C_DrawSkillCircle.cs" />
+    <Compile Include="Components\DrawComponents\C_DrawStringTemporary.cs" />
     <Compile Include="Components\DrawComponents\C_DrawSpriteAutoSize.cs" />
     <Compile Include="Components\DrawComponents\C_DrawSpriteNormal.cs" />
     <Compile Include="Components\DrawComponents\C_DrawDebugMessage.cs" />

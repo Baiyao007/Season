@@ -61,7 +61,7 @@ namespace Season.Scene.Creators
             player.RegisterComponent(new C_PlayerState());
             player.RegisterComponent(new C_DrawRouteEffect());
             //player.RegisterComponent(new C_DrawLocus());
-            player.RegisterComponent(new C_DrawDebugMessage(bezier));
+            player.RegisterComponent(new C_DrawDebugMessage(gameDevice, bezier));
 
             C_DrawAnimetion drawComp = new C_DrawAnimetion(Vector2.One * 256, 16);
             drawComp.AddAnim("Idle", new AnimData(1, 1, 1, "A_Player_Idle"));

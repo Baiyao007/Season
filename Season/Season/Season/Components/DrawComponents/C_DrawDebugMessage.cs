@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MyLib.Device;
 using Season.Components.NormalComponents;
 using Season.Def;
@@ -11,23 +12,25 @@ namespace Season.Components.DrawComponents
 {
     class C_DrawDebugMessage : DrawComponent
     {
+        private InputState inputState;
         private C_BezierPoint bezier;
         private ColliderComponent collider;
-        public C_DrawDebugMessage(C_BezierPoint bezier, float alpha = 1, float depth = 100)
+        public C_DrawDebugMessage(GameDevice gameDevice, C_BezierPoint bezier, float alpha = 1, float depth = 100)
         {
             this.alpha = alpha;
             this.depth = depth;
             this.bezier = bezier;
-            
+            inputState = gameDevice.GetInputState;
         }
         public override void Draw() {
             if (!Parameter.IsDebug) { return; }
 
+            if (inputState.IsDown(Keys.W)) { Camera2D.ZoomIn(); }
+            if (inputState.IsDown(Keys.S)) { Camera2D.ZoomOut(); }
+
             Renderer_2D.Begin();
             DrawTextMessage();
             Renderer_2D.End();
-
-
 
             Renderer_2D.Begin(Camera2D.GetTransform());
             DrawEntityPosition();
