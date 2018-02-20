@@ -58,7 +58,7 @@ namespace Season.Components.MoveComponents
         }
 
         protected override void UpdateMove() {
-            if (collider.IsThrough("ChildJump")) { state.IsJump = true; }
+            if (collider.IsThrough("ChildJump") && !childDirection.IsNone()) { state.IsJump = true; }
             if (state.IsJump) { return; }
             isCaught = childState.IsBeCaught();
             if (isCaught) {

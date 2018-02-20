@@ -74,6 +74,12 @@ namespace Season.States
 
             //Jumpに遷移
             if (inputState.WasDown(Keys.Space, Buttons.A)) {
+                //子生物誘導ヒントを作る
+                C_Collider_PointInHintArea hint = new C_Collider_PointInHintArea("ChildJump", entity.transform.Position, Vector2.One * 40);
+                hint.Active();
+                hint.Destroy(2);
+                TaskManager.AddTask(hint);
+
                 routeEffect.Sleep();
                 float nowSpeed = moveComp.speed;
                 entity.RemoveComponent(moveComp);

@@ -29,13 +29,6 @@ namespace Season.Components.NormalComponents
             loadArea.RemoveAll(a => a < 0 || a > Parameter.StageSize.X / 10000);
         }
 
-        public bool IsCheck {
-            get { return isCheck; }
-            set { isCheck = value; }
-        }
-
-        public Vector2 GetPosition() { return position; }
-
         public List<int> GetArea() { return loadArea; }
     }
 }

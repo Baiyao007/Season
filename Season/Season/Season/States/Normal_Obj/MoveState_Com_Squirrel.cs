@@ -37,9 +37,7 @@ namespace Season.States
 
         protected override eStateTrans UpdateAction(Entity entity, ref IState<Entity> nextState)
         {
-            if (state.IsJump)
-            {
-                Console.WriteLine("Child Fall");
+            if (state.IsJump) {
                 entity.RemoveComponent(moveComp);
                 UpdateComponent fallComp = new C_JumpWithSquirrelAI(Parameter.PlayerLimitSpeed);
                 entity.RegisterComponent(fallComp);
@@ -47,10 +45,8 @@ namespace Season.States
                 return eStateTrans.ToNext;
             }
 
-
             //Damage判定
-            if (CollitionCheck(entity))
-            {
+            if (CollitionCheck(entity)) {
                 nextState = new DeathState_Com("Bom", gameDevice);
                 return eStateTrans.ToNext;
             }

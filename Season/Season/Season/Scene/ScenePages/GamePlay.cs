@@ -119,14 +119,9 @@ namespace Season.Scene.ScenePages
         /// </summary>
         /// <param name="gameTime">時間</param>
         public void Update(GameTime gameTime) {
-
-            if (inputState.IsDown(Keys.W)) { Camera2D.ZoomIn(); }
-            if (inputState.IsDown(Keys.S)) { Camera2D.ZoomOut(); }
-
             if (inputState.WasDown(Keys.I)) {
                 Parameter.IsDebug = !Parameter.IsDebug;
             }
-
 
             if (isEnd) { return; }
             if (inputState.WasDown(Keys.P)) {
