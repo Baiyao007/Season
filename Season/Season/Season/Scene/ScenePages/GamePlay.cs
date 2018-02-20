@@ -16,7 +16,6 @@ using Season.Components;
 using Season.Scene.Creators;
 using Season.Components.DrawComponents;
 using Season.Components.NormalComponents;
-using Season.Components.ColliderComponents;
 using Season.Components.UpdateComponents;
 
 namespace Season.Scene.ScenePages
@@ -29,7 +28,8 @@ namespace Season.Scene.ScenePages
 
         private E_Scene next;
         private StageCreator stageCreator;
-
+        private C_StageLoader stageLoader;
+        
         private Entity player;
 
         private bool isPause;
@@ -40,6 +40,7 @@ namespace Season.Scene.ScenePages
 
             inputState = gameDevice.GetInputState;
             stageCreator = new StageCreator(gameDevice);
+            stageLoader = new C_StageLoader(gameDevice);
 
             isPause = false;
             stageNo = 1;
@@ -52,6 +53,8 @@ namespace Season.Scene.ScenePages
             isEnd = false;
             isPause = false;
             GameConst.Initialize();
+
+            stageLoader.SetStage(stageNo);
 
             //Entity初期化
             stageCreator.CreateStage(stageNo);
@@ -146,6 +149,13 @@ namespace Season.Scene.ScenePages
                 Initialize();
                 return;
             }
+
+            int playerX = (int)player.transform.Position.X;
+            if (playerX % 10000 <= 30) {
+                stageLoader.SetPoint(playerX / 10000);
+            }
+
+
             if (EntityManager.GetEntityCount() > 0) {
                 Camera2D.Update(player.transform.Position);
             }

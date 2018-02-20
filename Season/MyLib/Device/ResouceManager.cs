@@ -70,7 +70,7 @@ namespace MyLib.Device
         /// </summary>
         /// <param name="name">アセット名</param>
         public static void DeleteTextures(string name) {
-            if (textures.ContainsKey(name)) { return; }
+            if (!textures.ContainsKey(name)) { return; }
             textures[name].Dispose();
             textures.Remove(name);
         }
