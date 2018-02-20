@@ -33,6 +33,7 @@ namespace Season.Scene.Creators
                 { "Bird", CreateBird },
                 { "Boar", CreateBoar },
                 { "Eagle", CreateEagle },
+                { "Wasteland", CreateWasteland },
                 { "Branch", CreateBranch }
             };
         }
@@ -94,6 +95,21 @@ namespace Season.Scene.Creators
         #endregion
 
         #region CreateWithPositon
+
+        private void CreateWasteland(Vector2 position) {
+            List<int> lb = BezierStage.GetLB(position);
+
+            //実体生成
+            Entity wasteland = Entity.CreateEntity("Wasteland", "Wasteland", new Transform2D());
+
+            //位置設定
+            C_BezierPoint bezier = new C_BezierPoint();
+
+            //初期化毒沼
+            C_UpdateWastelandState wastelandState = new C_UpdateWastelandState(lb);
+            wasteland.RegisterComponent(wastelandState);
+            wasteland.RegisterComponent(new C_DrawWasteland(gameDevice, wastelandState));
+        }
 
         private void CreateShrub(Vector2 position)
         {

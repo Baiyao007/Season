@@ -280,5 +280,33 @@ namespace Season.Utility
         public static List<List<Vector2>> GetBlockMapList() { return blockMapList; }
 
         public static bool IsRouteEnd() { return isEnd; }
+
+
+
+
+        public static List<int> GetLB(Vector2 nowPosition) {
+            int l = 0;
+            int b = 0;
+
+            for (int i = 0; i < controllPoints.Count; i++) {
+                if (nowPosition.X > controllPoints[i].End().X) { continue; }
+                if (nowPosition.X >= controllPoints[i].Begin().X) {
+                    for (int j = 0; j < controllPoints[i].Count; j++) {
+                        if (nowPosition.X > controllPoints[i][j].X) { continue; }
+                        if (j + 8 > controllPoints[i].Count) { break; }
+                        b = j;
+                        break;
+                    }
+
+                    if (b == 0) { continue; }
+                    l = i;
+                    break;
+                }
+            }
+
+            List<int> indexs = new List<int>() { l, b };
+            return indexs;
+        }
+
     }
 }

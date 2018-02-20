@@ -42,6 +42,7 @@ namespace StageCreatorForSeason.Objects
                 { eObjectType.Boar,  CreatEntity },
                 { eObjectType.Eagle,  CreatEntity },
                 { eObjectType.Shrub,  CreatEntity },
+                { eObjectType.Wasteland,  CreatEntity },
                 { eObjectType.F,CreatHint },
                 { eObjectType.X,CreatHint },
                 { eObjectType.Z,CreatHint },
@@ -59,6 +60,7 @@ namespace StageCreatorForSeason.Objects
                 { "Eagle", eObjectType.Eagle },
                 { "Shrub", eObjectType.Shrub },
                 { "Squirrel", eObjectType.Squirrel },
+                { "Wasteland", eObjectType.Wasteland },
             };
 
             entitysList = new List<Object>();
@@ -97,7 +99,6 @@ namespace StageCreatorForSeason.Objects
             );
         }
 
-
         public void CreatObject(eObjectType type, Vector2 position) {
             if ((int)type < 2) {
                 mapPointsList[type].Add(creatFuncs[type](position));
@@ -108,9 +109,7 @@ namespace StageCreatorForSeason.Objects
             else {
                 entitysList.Add(creatFuncs[type](position));
             }
-            
         }
-
 
         public void InitializeStage(int stageNo) {
             //初期化ルート

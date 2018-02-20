@@ -89,7 +89,7 @@ namespace Season.States
 
 
             //攻撃
-            if (inputState.WasDown(Keys.F, Buttons.B)) {
+            if (inputState.IsDown(Keys.F, Buttons.B)) {
                 routeEffect.Sleep();
                 entity.RemoveComponent(moveComp);
                 nextState = new AttackState_Com_Player(gameDevice);
