@@ -33,6 +33,8 @@ namespace Season.Components.UpdateComponents
 
         }
 
+        public int GetCheckPoint() { return pointNo; }
+
         public void SetPoint(int pointNo) {
             if (this.pointNo == pointNo) { return; }
             pointNoBefore = this.pointNo;

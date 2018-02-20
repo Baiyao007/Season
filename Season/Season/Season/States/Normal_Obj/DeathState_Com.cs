@@ -140,7 +140,9 @@ namespace Season.States.Normal_Obj
             entity.GetDrawComponent("C_DrawAnimetion").alpha -= 0.05f;
             if (entity.GetDrawComponent("C_DrawAnimetion").alpha <= 0)
             {
-                if (entity.GetName() == "Player") { GameConst.SetEnding(); }
+                if (entity.GetName() == "Player") {
+                    GameConst.SetEnding();
+                }
                 entity.DeActive();
             }
             nextState = this;
