@@ -43,7 +43,7 @@ namespace Season.Scene.Creators
             //CreateWithLBC(stageNo);
         }
 
-        private void CreatPlayer() {
+        public void CreatPlayer() {
             //生成地を決める
             Transform2D trans = new Transform2D();
             trans.Position = new Vector2(500, 100);

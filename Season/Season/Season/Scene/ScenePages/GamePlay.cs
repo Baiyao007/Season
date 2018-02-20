@@ -136,8 +136,11 @@ namespace Season.Scene.ScenePages
             if (isPause) { return; }
 
             if (GameConst.IsEnding) {
-                next = E_Scene.ENDING;
-                isEnd = true;
+                GameConst.Initialize();
+                stageCreator.CreatPlayer();
+                player = EntityManager.FindWithName("Player")[0];
+                player.transform.Position = new Vector2(stageLoader.GetCheckPoint() * 10000 + 500, 500);
+
                 return;
             }
             if (player.transform.Position.X >= Parameter.StageSize.X - 500) {
@@ -154,7 +157,6 @@ namespace Season.Scene.ScenePages
             if (playerX % 10000 <= 30) {
                 stageLoader.SetPoint(playerX / 10000);
             }
-
 
             if (EntityManager.GetEntityCount() > 0) {
                 Camera2D.Update(player.transform.Position);

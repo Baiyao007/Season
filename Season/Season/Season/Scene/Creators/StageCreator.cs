@@ -30,6 +30,10 @@ namespace Season.Scene.Creators
             CreateHints(stageNo);
         }
 
+        public void CreatPlayer() {
+            entityCreator.CreatPlayer();
+        }
+
         private void CreateStageLayer(int stageNo) {
             CSVReader.Read("LayerList_Stage" + stageNo);
             string[,] data = CSVReader.GetStringMatrix();
